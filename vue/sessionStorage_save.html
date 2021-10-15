@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name:"lisi"
+        };
+//        sessionStorage.setItem("obj",JSON.stringify(obj));//会话保存
+//        var m = sessionStorage.getItem("obj");
+//        console.log(JSON.parse(m));
+        localStorage.setItem("obj",JSON.stringify(obj));//持久化保存
+        var m = localStorage.getItem("obj");
+        console.log(JSON.parse(m));
+    </script>
+</body>
+</html>

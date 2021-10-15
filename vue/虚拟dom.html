@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="real-contain">
+        <p>real dom</p>
+        <div>cannot update</div><!--<h1>cannot update</h1>-->
+        <ul>
+            <li class="item">item 1</li>
+            <li class="item">item 1</li>
+            <li class="item">item 1</li>
+        </ul>
+    </div>
+    <!--js 虚拟dom-->
+    <!--10-->
+    <script>
+        const tree = Element("div",{id:"real-contain"},[
+            Element("p",{},["real dom"]),
+            Element("div",{},["cannot update"]),//replace
+            Element("ul",{},[
+                Element("li",{class:"item"},["item 1"]),
+                Element("li",{class:"item"},["item 1"]),
+                Element("li",{class:"item"},["item 1"]),
+            ])
+        ])
+    </script>
+</body>
+</html>

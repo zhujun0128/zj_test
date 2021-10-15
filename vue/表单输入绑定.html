@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        #listA{
+            background-color: red;
+        }
+        #listB{
+            background-color: yellow;
+        }
+        #listC{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" placeholder="edit me">
+        <p>Message:{{message}}</p>
+        <hr>
+        <textarea name="" id="" cols="30" rows="10" v-model="message" placeholder="add multiple lines"></textarea>
+        <p style="white-space: pre-line">{{message}}</p>
+        <hr>
+        <!--如果是单个复选框，绑定的是bool-->
+        <input type="checkbox" v-model="checked" id="checked">
+        <label for="checked">{{checked}}</label>
+        <hr>
+        <!--如果是多个复选框，绑定到同一数组-->
+        <input type="checkbox" id="jack" value="jack" v-model="checkedNames"><label for="jack">jack</label>
+        <input type="checkbox" id="john" value="john" v-model="checkedNames"><label for="john">john</label>
+        <input type="checkbox" id="mike" value="mike" v-model="checkedNames"><label for="mike">mike</label>
+        <br>
+        <span>Checked names:{{checkedNames}}</span>
+        <hr>
+        <input type="radio" id="one" value="one" v-model="picked"><label for="one">one</label>
+        <input type="radio" id="two" value="two" v-model="picked"><label for="two">two</label>
+        <br>
+        <span>Picked:{{picked}}</span>
+        <hr>
+        <!--下拉选择框单选的时候-->
+        <select v-model="selected">
+            <option value="" disabled>请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span :id="'list' + selected">Selected:{{selected}}</span>
+        <hr>
+        <!--多选绑定到一个数组-->
+        <select v-model="selected2" multiple style="width: 50px">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>Selected2:{{selected2}}</span>
+        <hr>
+        <select v-model="selected3">
+            <option v-for="option in options" :value="option.value">{{option.text}}</option>
+        </select>
+        <span>Selected3:{{selected3}}</span>
+        <hr>
+        <input type="checkbox" v-model="toggle" id="user" true-value="yes" false-value="no"><label for="user">{{toggle}}</label>
+        <hr>
+        <input type="text" v-model.lazy="message">
+        <p>{{message}}</p>
+
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                message:"hello world",
+                checked:true,
+                checkedNames:[],
+                picked:"",
+                selected:"",
+                selected2:[],
+                selected3:"A",
+                options:[
+                    {text:"one",value:"A"},
+                    {text:"two",value:"B"},
+                    {text:"three",value:"C"}
+                ],
+                toggle:"yes"
+            }
+        })
+    </script>
+</body>
+</html>

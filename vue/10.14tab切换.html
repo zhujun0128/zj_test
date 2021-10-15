@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="jquery.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid gray;
+            top: 50px;
+            position: relative;
+        }
+        #app > ul{
+            list-style: none;
+            text-align: center;
+        }
+        #app > ul li{
+            width: 25%;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            float: left;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+        #app > p{
+            margin-left: 10px;
+            margin-top: 50px;
+            position: absolute;
+        }
+        .bgc{
+            background-color: lightskyblue!important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in name" @click="tabMenu(index)" :class="currentIndex == index ? 'bgc' : ''">
+                {{item}}
+            </li>
+        </ul>
+        <p>{{name[currentIndex]}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                name:["html","css","javaScript","vue"],
+                currentIndex:0
+            },
+            methods:{
+                tabMenu(index){
+                    this.currentIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        .active{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        .text{
+            background-color: green;
+        }
+        .addBorder{
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <template id="todoItem">
+        <ul class="text">
+            <li v-for='item in list'>{{item.text}}</li>
+        </ul>
+    </template>
+    <div id="app" :title="message">
+        {{title}}
+        <hr>
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        <hr>
+        <p v-if="seen">现在你看到我了</p>
+        <hr>
+        <ul>
+            <li v-for="item in todos">
+                {{item.text}}
+            </li>
+        </ul>
+        <hr>
+        <button @click="addItem">点击添加新的项目</button>
+        <hr>
+        <p>
+            {{info}}
+        </p>
+        <button @click="reverseMessage">反转消息</button>
+        <hr>
+        <todo-item :list="todos" :class="{addBorder:isActive}"></todo-item>
+        <hr>
+        <ol>
+            <list-item v-for="item in groceryList" :todo="item.text" :id="item.id"></list-item>
+        </ol>
+        <hr>
+        <input type="text" v-model="info">
+        <hr>
+        <div :class="classObject"></div>
+        <hr>
+        <div :class="[isActive?activeClass:'',errorClass]"></div>
+        <hr>
+        <div :class="[{active:isActive},errorClass]"></div>
+        <hr>
+        <div :style="{color:activeColor,fontSize:fontSize + 'px'}">今天的天气很好</div>
+        <hr>
+        <div :style="styleObject">今天的天气很好</div>
+        <hr>
+        <div :style="[baseStyle,overridingStyle]">适合去踏青</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"页面加载于" + new Date().toLocaleDateString(),
+                title:"我是title",
+                seen:true,
+                todos:[
+                    {text:"学习javaScript"},
+                    {text:"学习vue"},
+                    {text:"整个牛项目"}
+                ],
+                info:"hello Vue.js!",
+                groceryList:[
+                    {id:0,text:"蔬菜"},
+                    {id:1,text:"奶酪"},
+                    {id:2,text:"随便其他人吃的东西"}
+                ],
+                isActive:true,
+                isText:null,
+                /*classObject:{
+                    active:true,
+                    text:false
+                },*/
+                activeClass:"active",
+                errorClass:"text",
+                activeColor:"red",
+                fontSize:24,
+                styleObject:{
+                    color:"red",
+                    fontSize:"24px"
+                },
+                baseStyle:{
+                    color:"red",
+                    fontSize:"24px"
+                },
+                overridingStyle:{
+                    border:"1px solid green"
+                }
+            },
+            methods:{
+                addItem(){
+                    this.todos.push({text:"牛项目要做的很棒"});
+                },
+                reverseMessage(){
+                    this.info = this.info.split("").reverse().join("");
+                }
+            },
+            components:{
+                "todo-item":{
+                    template:"#todoItem",
+                    props:["list"]
+                },
+                "list-item":{
+                    template:"<li>{{todo}}</li>",
+                    props:["todo"]
+                }
+            },
+            computed:{
+                classObject(){
+                    return {
+                        active: this.isActive && !this.isText,
+                        text: this.isText && this.isText.type === 'fatal'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

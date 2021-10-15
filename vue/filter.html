@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <script>
+        var obj = [
+            {id:2,name:"lo"},
+            {id:5,name:"lp"},
+            {id:7,name:"lw"},
+            {id:1,name:"le"},
+            {id:3,name:"lr"},
+            {id:9,name:"lt"}
+            ];
+        var t = obj.filter((val)=>{
+            return val.id > 5;
+        });
+        console.log(t);
+    </script>
+</body>
+</html>

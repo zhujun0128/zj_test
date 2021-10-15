@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 100%;
+            height: 400px;
+            background: url("bj.jpg") no-repeat center center / cover;
+            position: relative;
+        }
+        header > p {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            color: white;
+        }
+        nav{
+            width: 100%;
+            height: 30px;
+            background-color: gray;
+        }
+        section{
+            width: 100%;
+            min-height: 300px;
+            background-color: orange;
+        }
+        footer{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: gray;
+            color: white;
+        }
+        .btn{
+            text-align: center;
+        }
+        .btn button{
+            width: 180px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: none;
+            background-color: #0099cc;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <template id="headItem">
+        <header>
+            <p>{{tips.text}}</p>
+        </header>
+    </template>
+    <template id="footItem">
+        <footer>&copy;中竞教育</footer>
+    </template>
+
+    <div id="app">
+        <div id="block1" v-if="seen1">
+            <head-item :tips="tips[0]"></head-item>
+            <nav></nav>
+            <section>1</section>
+            <foot-item></foot-item>
+            <div class="btn">
+                <button @click="jump">点击跳转到block2</button>
+            </div>
+        </div>
+        <div id="block2" v-if="seen2">
+            <head-item :tips="tips[1]"></head-item>
+            <section>2</section>
+            <foot-item></foot-item>
+            <div class="btn">
+                <button @click="jump">点击跳转到block1</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el:"#app",
+            data:{
+                seen1:true,
+                seen2:false,
+                tips:[
+                    {text:"这是一朵白色的云"},
+                    {text:"这是一朵黑色的云"},
+                ]
+            },
+            methods:{
+                jump(){
+                    this.seen1 = !this.seen1;
+                    this.seen2 = !this.seen2;
+                }
+            },
+            components:{
+                "head-item":{
+                    template:"#headItem",
+                    props:["tips"]
+                },
+                "foot-item":{
+                    template:"#footItem"
+                }
+            }
+        });
+        var app2 = new Vue({
+            el:"#footer",
+            data:{
+                seen1:true,
+                seen2:false,
+                todos:[
+                    {text:"1"},
+                    {text:"2"},
+                ]
+            },
+            methods:{
+                skip(){
+                    app1.seen1 = !app1.seen1;
+                    app1.seen2 = !app1.seen2;
+                    app2.seen1 = !app2.seen1;
+                    app2.seen2 = !app2.seen2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

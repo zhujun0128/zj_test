@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <style>
+        #dynamicId{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        #list0{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+        #list1{
+            width: 100px;
+            height: 100px;
+            background-color: blue
+        }
+        #list2{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+        a{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div ref="bg">{{foo}}</div>
+        <button @click="foo = 'baz'">Change It</button>
+        <button @click="destroy">销毁vue实例</button>
+        <p v-once="">{{foo}}</p><!--只插入一次，后面不再改变-->
+        <hr>
+        <p>Using mustaches:{{rawHtml}}</p><!--若rawHtml含有html标签，不加v-html会直接把标签显示出来-->
+        <hr>
+        <p v-html="rawHtml">Using mustaches:{{rawHtml}}</p>
+        <hr>
+        <div :id="texts"></div>
+        <hr>
+        <button :disabled="isButtonDisabled" @click="isDisabled">点击我</button>
+        <hr>
+        <p>{{message.split("").reverse().join("")}}</p>
+        <hr>
+        <p>{{info?"info是正确的":"info是错误的"}}</p>
+        <hr>
+        <select name="" id="" v-model="id">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <div :id="'list' + id"></div>
+        <hr>
+        <a :href="url">点击跳转</a>
+        <hr>
+        <a :[attributename]="idName">123</a>
+        <hr>
+        <div id="list1" @[eventname]="doSomething"></div>
+        <hr>
+        <form @submit.prevent="onSubmit">
+            <label for="user">用户名</label><input type="text" id="user">
+            <input type="submit" value="提交">
+        </form>
+        <hr>
+        <!--计算属性-->
+        <p>Original message:{{message}}</p>
+        <p>Computed reversed message:{{reversedMessage}}</p>
+        <hr>
+        <h2>你的全名是：{{fullname}}</h2>
+        <h2>firstname:{{firstname}}</h2>
+        <h2>lastname:{{lastname}}</h2>
+        <hr>
+        <button @click="setFullName">设置fullname的值</button>
+        <hr>
+        <p>
+            Ask a yes/no question:
+            <input type="text" v-model="question">
+        </p>
+        <p>{{answer}}</p>
+    </div>
+    <script>
+        var obj = {
+            foo:"bar",
+            rawHtml:"<b>我是被加粗的文本</b>",
+            texts:"dynamicId",
+            isButtonDisabled:false,
+            message:"hello world",
+            info:true,
+            id:0,
+            url:"https://www.baidu.com",
+            attributename:"id",
+            idName:"list2",
+            eventname:"click",
+            firstname:"Foo",
+            lastname:"Bar",
+//            fullname:"Foo Bar"
+            question:"",
+            answer:"I cannot give you an answer until you ask a question"
+        };
+//        Object.freeze(obj);//冻结，无法改变
+        var app = new Vue({
+            el:"#app",
+            data:obj,
+            methods:{
+                destroy(){
+                    app.$destroy();
+                },
+                isDisabled(){
+                    this.isButtonDisabled = true;
+                    this.url = "https://taobao.com"
+                },
+                doSomething(){
+                    console.log("动态事件的参数");
+                },
+                onSubmit(e){
+//                    e.preventDefault();
+                    console.log("提交");
+                },
+                setFullName(){
+                    this.fullname = "john Doe";
+                },
+                getAnswer(){
+                    if(this.question.indexOf("?") === -1){
+                        this.answer = "Questions usually contain a question mark,;-)";
+                        return;
+                    }
+                    this.answer = "Thinking...";
+                    var abc = this;
+                    axios.get("https://yesno.wtf/api").then(function (response) {
+                        abc.answer = _.capitalize(response.data.answer);
+                    }).catch(function (err) {
+                        abc.answer = "Error!Counld not reach the API." + err;
+                    })
+                }
+            },
+            components:{
+
+            },
+            computed:{
+                /*reversedMessage(){
+                    return this.message.split("").reverse().join("");
+                },
+                fullname(){
+                    return this.firstname + " " + this.lastname;
+                }*/
+                reversedMessage:{
+                    //getter
+                    get: function () {
+                        return this.message.split("").reverse().join("");
+                    }
+                },
+                fullname:{
+                    get: function () {
+                        return this.firstname + " " + this.lastname;
+                    },
+                    //setter
+                    set:function (newVal) {
+                        var names = newVal.split(" ");
+                        this.firstname = names[0];
+                        this.lastname = names[names.length - 1];
+                    }
+                }
+            },
+            watch:{
+                /*firstname(val){
+                    this.fullname= val + " " + this.lastname;
+                },
+                lastname(val){
+                    this.fullname= this.firstname + " " + val;
+                }*/
+                question(newQuestion,oldQuestion){
+                    this.answer = "Wating for you to stop typing...";
+                    this.debouncedGetAnswer();
+                }
+            },
+            created(){
+                this.debouncedGetAnswer = _.debounce(this.getAnswer,500);
+            }
+            /*/!*创建前*!/
+            beforeCreate(){
+                console.group("beforeCreate创建前===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*创建后，数据已经初始化*!/
+            created(){
+                console.group("Create创建后===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*模板的编译*!/
+            beforeMount(){
+                console.group("beforeMount挂载前状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*模板的挂载*!/
+            mounted(){
+                console.group("mounted挂载后状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+                this.$refs.bg.style.backgroundColor = "green";
+            },
+            /!*数据变化的时候*!/
+            beforeUpdate(){
+                console.group("beforeUpdate数据更新前状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*当重新渲染完毕以后，dom元素数据更新完毕以后*!/
+            updated(){
+                console.group("updated数据更新后状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*销毁前*!/
+            beforeDestroy(){
+                console.group("beforeDestroy销毁前状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            },
+            /!*销毁后*!/
+            destroyed(){
+                console.group("destroyed销毁后状态===========");
+                console.log("%c%s","color:red","el: " + this.$el);
+                console.log("%c%s","color:red","data: " + this.$data);
+                console.log("%c%s","color:red","data: " + this.foo);
+            }*/
+        })
+    </script>
+</body>
+</html>
