@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="700" height="700"></canvas>
+    <!--<img src="NPC2.png" alt="" id="imgs">-->
+    <script>
+        var imgs = new Image();
+        imgs.src = "NPC2.png";
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext("2d");
+//        imgs.onload = function () {
+////            //三个参数
+////            ctx.drawImage(imgs,20,20);
+////            //五个参数
+////            ctx.drawImage(imgs,50,50,2 * imgs.width,2 * imgs.height);
+//            //九个参数
+////            ctx.drawImage(imgs,0,0,imgs.width / 4,imgs.height / 4,20,20,imgs.width / 4,imgs.height / 4);//切出第一个图片
+//            ctx.drawImage(imgs,imgs.width / 4,imgs.height / 4,imgs.width / 4,imgs.height / 4,20,20,imgs.width / 4,imgs.height / 4);//切除第五个图片
+//        };
+
+        imgs.onload = function () {
+            var t = 0;
+            ctx.drawImage(imgs,imgs.width / 4 * (t++),0,imgs.width / 4,imgs.height / 4,20,20,imgs.width / 4,imgs.height / 4);
+            var timer = setInterval(function () {
+                if(t >= 4)
+                {
+                    t = 0;
+                }
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                ctx.drawImage(imgs,imgs.width / 4 * (t++),0,imgs.width / 4,imgs.height / 4,20,20,imgs.width / 4,imgs.height / 4);
+            },500);
+        };
+
+    </script>
+</body>
+</html>

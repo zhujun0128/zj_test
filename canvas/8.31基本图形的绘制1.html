@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+    <script>
+        var cvs = document.getElementById("mycanvas");
+        var ctx = cvs.getContext("2d");
+
+//        ctx.beginPath();
+//        ctx.rect(20,20,150,50);//矩形
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.arc(100,100,50,0,Math.PI / 180 * 360);//圆
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(250,250);
+//        ctx.arc(250,250,50,0,Math.PI / 180 * 30);//扇形
+//        ctx.closePath();
+//        ctx.stroke();
+
+//        //画一个圆矩形
+//        ctx.beginPath();
+//        ctx.moveTo(30,10);
+//        ctx.arcTo(150,10,150,30,20);//曲线
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(150,30);
+//        ctx.arcTo(150,70,130,70,20);
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(130,70);
+//        ctx.arcTo(10,70,10,50,20);
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(10,50);
+//        ctx.arcTo(10,10,30,10,20);
+//        ctx.stroke();
+
+//        //绘制一个等分的扇形
+//        ctx.beginPath();
+//        ctx.moveTo(200,200);
+//        ctx.arc(200,200,100,0,Math.PI / 180 * 120);//扇形
+//        ctx.closePath();
+//        ctx.fillStyle = "red";
+//        ctx.fill();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(200,200);
+//        ctx.arc(200,200,100,Math.PI / 180 * 120,Math.PI / 180 * 240);//扇形
+//        ctx.closePath();
+//        ctx.fillStyle = "green";
+//        ctx.fill();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(200,200);
+//        ctx.arc(200,200,100,Math.PI / 180 * 240,Math.PI / 180 * 360);//扇形
+//        ctx.closePath();
+//        ctx.fillStyle = "blue";
+//        ctx.fill();
+
+        //绘制贝塞尔曲线
+        //x = (1-t)*(1-t)*开始点x + 2*t*(1-t)*控制点x + t*t*结束点x
+        //y = (1-t)*(1-t)*开始点y + 2*t*(1-t)*控制点y + t*t*结束点y
+        //t = [0,1)
+        ctx.beginPath();
+        ctx.moveTo(120,400);
+        ctx.quadraticCurveTo(10,70,150,40);
+        ctx.stroke();
+    </script>
+</body>
+</html>

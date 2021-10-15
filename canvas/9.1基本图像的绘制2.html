@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="700" height="700"></canvas>
+    <script>
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext("2d");
+//        ctx.beginPath();
+//        ctx.moveTo(20,20);
+//        ctx.bezierCurveTo(20,100,200,100,200,20);
+//        ctx.stroke();
+
+//        //clip裁剪
+//        ctx.rect(50,20,200,120);
+//        ctx.stroke();
+//        ctx.clip();
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(0,0,150,100);
+
+//        //isPointInPath
+//        ctx.rect(20,20,150,100);
+//        if(ctx.isPointInPath(200,200)){
+//            ctx.stroke();
+//        }
+
+//        var left = 0;
+//        var timer = setInterval(function () {
+//            ctx.clearRect(0,0,cvs.width,cvs.height);
+//            ctx.beginPath();
+//            left++;
+//            ctx.rect(left,100,50,50);
+//            ctx.stroke();
+//            ctx.beginPath();
+//            ctx.rect(100,100,20,500);
+//            ctx.stroke();
+//            if(ctx.isPointInPath(left + 50,100)){
+//                clearInterval(timer);
+//            }
+//        },100)
+
+//        ctx.beginPath();
+//        ctx.lineWidth = 5;//线宽
+////        ctx.lineCap = "square";//线帽：正方形
+//        ctx.lineCap = "round";//线帽：圆形
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(120,10);
+//        ctx.stroke();
+
+//        ctx.beginPath();
+//        ctx.lineWidth = 5;
+//        ctx.miterLimit = 2;//限制最大斜接长度，只对miter起作用
+////        ctx.lineJoin = "bevel";//两条线交叉出的样式
+////        ctx.lineJoin = "round";
+//        ctx.lineJoin = "miter";//默认
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(110,40);
+//        ctx.lineTo(10,70);
+//        ctx.stroke();
+
+        ctx.shadowColor = "red";//设置阴影的颜色
+        ctx.shadowBlur = 15;//设置阴影的模糊程度
+        ctx.shadowOffsetX = 20;//设置阴影X轴方向的偏移
+        ctx.shadowOffsetY = 20;//设置阴影Y轴方向的偏移
+        ctx.fillRect(40,20,100,80);
+
+    </script>
+</body>
+</html>

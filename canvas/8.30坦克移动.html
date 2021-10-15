@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body onload="onLoad()">
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+    <script>
+        var cvs = document.getElementById("mycanvas");
+        var ctx = cvs.getContext("2d");
+        var gGame = null;
+        function  onLoad() {
+            gGame = new Game();
+            gGame.update();
+        }
+        function Game() {
+            var _this = this;
+            this.tank = [];
+            for(var i = 0;i < 1;i++){
+                _this.tank.push(new Tank(i));
+            }
+            _this.tank.forEach(function (item,index) {
+                item.createTank();
+            });
+            this.update = function () {
+                _this.tank.forEach(function (item) {
+                    item.updatePos();
+                    item.isTankCollision();
+                });
+                window.requestAnimationFrame(_this.update)
+            }
+        }
+        function Tank(id) {
+            var _this = this;
+            var maxNum = 500;
+            this.x = Math.floor(Math.random() * maxNum);
+            this.y = Math.floor(Math.random() * maxNum);
+            this.angle = Math.floor(Math.random() * 360);
+            this.speed = 3;
+            this.id = id;
+            this.createTank = function () {
+                ctx.fillStyle = "green";
+                ctx.fillRect(_this.x,_this.y,100,100);
+                ctx.fillStyle = "red";
+                ctx.font = "bold 24px Arial";
+                ctx.fillText("坦克",_this.x,_this.y);
+            };
+            this.angleToGtadian = function (angle) {
+                return Math.PI / 180 * angle;
+            };
+            this.updatePos = function () {
+                var dt = 1;
+                _this.x += _this.speed * dt * Math.cos(_this.angleToGtadian(_this.angle));
+                _this.y += _this.speed * dt * Math.sin(_this.angleToGtadian(_this.angle));
+                ctx.clearRect(0,0,cvs.offsetWidth,cvs.offsetHeight);
+                ctx.fillStyle = "green";
+                ctx.fillRect(_this.x,_this.y,100,100);
+                ctx.fillStyle = "red";
+                ctx.font = "bold 24px Arial";
+                ctx.fillText("坦克",_this.x,_this.y);
+            };
+            this.isTankCollision = function () {
+                if(_this.x <= 0||_this.x >= cvs.offsetWidth - 100||_this.y <= 0||_this.y >= cvs.offsetHeight - 100){
+                    _this.angle -= 180;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

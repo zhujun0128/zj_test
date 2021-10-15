@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body onload="onLoad()">
+    <canvas id="cvs" width="700" height="700"></canvas>
+    <script>
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext("2d");
+        var gGame = null;
+        function  onLoad() {
+            gGame = new Game();
+            gGame.update();
+        }
+        function Game() {
+            var _this = this;
+            this.angle = 0;
+            this.draw = function () {
+                ctx.save();
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                ctx.beginPath();
+                ctx.arc(100,100,50,0,Math.PI / 180 * 360);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.translate(100,100);
+                ctx.rotate(_this.angle * Math.PI / 180);
+                ctx.moveTo(0,0);
+                ctx.lineTo(45,0);
+                ctx.stroke();
+                ctx.restore();
+            };
+            this.update =function () {
+                _this.draw();
+                if(_this.angle >= 360)
+                {
+                    _this.angle = 0;
+                }
+                _this.angle += 0.1;
+                window.requestAnimationFrame(_this.update)
+            }
+        }
+    </script>
+</body>
+</html>

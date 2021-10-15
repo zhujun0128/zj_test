@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+    <script>
+        var cvs = document.getElementById("mycanvas");
+        var ctx = cvs.getContext("2d");
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(110,10);
+//        ctx.lineTo(110,60);
+//        ctx.lineTo(10,60);
+//        ctx.lineTo(10,10);
+//        ctx.stroke();//绘制已定义的线段(未填充)
+//        ctx.fill();//填充的
+
+//        ctx.beginPath();
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(110,10);
+//        ctx.strokeStyle = "blue";
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(10,20);
+//        ctx.lineTo(110,20);
+//        ctx.strokeStyle = "red";
+//        ctx.stroke();
+
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(10,50);
+//        ctx.lineTo(50,50);
+//        ctx.stroke();
+//
+//        ctx.beginPath();
+//        ctx.moveTo(0,20);
+//        ctx.lineTo(0,60);
+//        ctx.lineTo(40,60);
+//        ctx.fill();
+
+//        ctx.beginPath();
+//        ctx.moveTo(10,10);
+//        ctx.lineTo(30,50);
+//        ctx.lineTo(10,90);
+//        ctx.lineTo(120,50);
+//        ctx.lineTo(10,10);
+//        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(40,20);
+        ctx.lineTo(30,40);
+        ctx.lineTo(40,30);
+        ctx.lineTo(50,40);
+        ctx.lineTo(40,20);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(40,30);
+        ctx.lineTo(40,550);
+        ctx.lineTo(560,550);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(560,550);
+        ctx.lineTo(550,560);
+        ctx.lineTo(570,550);
+        ctx.lineTo(550,540);
+        ctx.lineTo(560,550);
+        ctx.stroke();
+
+        var arr = [210,430,500,360,280,320,240,190];
+        var max = Math.max.apply(null,arr);
+        var spac_x = max / 500,spac_y = 500/arr.length;
+        for(var i = 0;i < arr.length;i++)
+        {
+            if(i == 0)
+            {
+                ctx.beginPath();
+                ctx.moveTo(40 + spac_y * (i + 1),550 - spac_x * arr[i]);
+            }
+            else
+            {
+                ctx.lineTo(40 + spac_y * (i + 1),550 - spac_x * arr[i]);
+            }
+            ctx.fillRect(40 + spac_y * (i + 1),548,4,4);
+            ctx.textBaseline = "top";
+            ctx.font = "18px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("item" + (i + 1),40 + spac_y * (i + 1),555);
+
+            ctx.textBaseline = "bottom";
+            ctx.fillText("" + arr[i],40 + spac_y * (i + 1),550 - spac_x * arr[i]);
+
+            ctx.fillRect(38,548 - spac_x * 100 * i,4,4);
+            ctx.textAlign = "end";
+            ctx.textBaseline = "top";
+            if(543 - spac_x * 100 * i >= 20)
+            {
+                ctx.fillText("" + 100 * i,35,543 - spac_x * 100 * i);
+            }
+        }
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+    </script>
+</body>
+</html>

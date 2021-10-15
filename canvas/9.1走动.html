@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="700" height="700"></canvas>
+    <script>
+        var imgs = new Image();
+        imgs.src = "NPC2.png";
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext("2d");
+        var gGame = null;
+        imgs.onload = function () {
+            gGame = new Game();
+            gGame.update();
+        };
+        function Game() {
+            var _this = this;
+            this.currentFrame = 0;
+            this.direction = 0;
+            this.x = 0;
+            this.y = 0;
+            this.movex = 0;
+            this.movey = 1;
+            this.speed = 5;
+            this.frame = 0;
+            this.lastFrame = 0;
+            this.CD = 30;
+            this.draw = function () {
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                ctx.beginPath();
+                ctx.drawImage(imgs,imgs.width / 4 * _this.currentFrame,imgs.height / 4 * _this.direction,imgs.width / 4,imgs.height / 4,_this.x,_this.y,imgs.width / 4,imgs.height / 4);
+                _this.x += _this.movex * _this.speed;
+                _this.y += _this.movey * _this.speed;
+                if(_this.x + imgs.width / 4 > cvs.width)
+                {
+                    _this.x = cvs.width - imgs.width / 4;
+                }else if(_this.x < 0)
+                {
+                    _this.x = 0;
+                }
+                if(_this.y + imgs.height / 4> cvs.height)
+                {
+                    _this.y = cvs.height - imgs.height / 4;
+                }else if(_this.y < 0)
+                {
+                    _this.y = 0;
+                }
+            };
+            this.update = function () {
+                ++_this.frame;
+                if(_this.frame - _this.lastFrame >= _this.CD)
+                {
+                    _this.draw();
+                    _this.currentFrame = _this.currentFrame++ >= 3 ? 0 : _this.currentFrame;
+                    _this.lastFrame = _this.frame;
+                }
+                window.requestAnimationFrame(_this.update);
+            };
+            window.onkeydown = function (e) {
+                switch (e.keyCode)
+                {
+                    case 37://左
+                        _this.direction = 1;
+                        _this.movex = -1;
+                        _this.movey = 0;
+                        break;
+                    case 38://上
+                        _this.direction = 3;
+                        _this.movex = 0;
+                        _this.movey = -1;
+                        break;
+                    case 39://右
+                        _this.direction = 2;
+                        _this.movex = 1;
+                        _this.movey = 0;
+                        break;
+                    case 40://下
+                        _this.direction = 0;
+                        _this.movex = 0;
+                        _this.movey = 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

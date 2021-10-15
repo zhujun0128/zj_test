@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="700" height="700"></canvas>
+    <script>
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext("2d");
+//        ctx.fillRect(10,10,100,50);
+//        ctx.translate(70,70);//会重新绘制(0,0)点
+//        ctx.fillRect(0,0,100,50);
+
+//        ctx.restore();
+//        ctx.rotate(60 * Math.PI / 180);//会重新绘制x,y轴
+//        ctx.fillRect(150,20,100,50);
+
+//        ctx.strokeRect(5,5,25,15);
+//        ctx.scale(2,2);//放大长宽的同时，同时改变定位的位置
+//        ctx.strokeRect(5,5,25,15);
+
+//        ctx.fillStyle = "yellow";
+//        ctx.fillRect(5,5,200,100);
+////        ctx.transform(1,0,0,1,30,20);//平移x:320x:y
+//        ctx.transform(2,0,0,2,0,0);//放大2倍
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(5,5,300,100);
+
+//        ctx.fillStyle = "yellow";
+//        ctx.rotate(10 * Math.PI / 180);
+//        ctx.fillRect(0,0,250,200);
+//        ctx.setTransform(1,0,0,1,30,20);//初始化画布，再按照transform进行操作
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(0,0,250,100);
+
+//        ctx.save();//保存当前画布的状态
+//        ctx.rotate(20 * Math.PI /180);
+//        ctx.fillRect(20,20,100,100);
+//        ctx.restore();//恢复先前画布的状态，避免因为平移，旋转，放大等元素的影响
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(0,0,100,100);
+
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(20,20,75,50);
+//        ctx.globalAlpha = 0.2;//设置透明度
+//        ctx.fillStyle = "green";
+//        ctx.fillRect(50,50,75,50);
+
+//        ctx.fillStyle = "darkblue";
+//        ctx.fillRect(20,20,75,50);//目标图像
+////        ctx.globalCompositeOperation = "source-over";//默认。在目标图像上显示源图像。
+////        ctx.globalCompositeOperation = "source-atop";//在目标图像顶部显示源图像。源图像位于目标图像之外的部分是不可见的。
+////        ctx.globalCompositeOperation = "source-in";//在目标图像中显示源图像。只有目标图像内的源图像部分会显示，目标图像是透明的。
+////        ctx.globalCompositeOperation = "source-out";//在目标图像之外显示源图像。只会显示目标图像之外源图像部分，目标图像是透明的。
+////        ctx.globalCompositeOperation = "destination-over";//在源图像上方显示目标图像。
+////        ctx.globalCompositeOperation = "destination-atop";//在源图像顶部显示目标图像。源图像之外的目标图像部分不会被显示。
+////        ctx.globalCompositeOperation = "destination-in";//在源图像中显示目标图像。只有源图像内的目标图像部分会被显示，源图像是透明的。
+////        ctx.globalCompositeOperation = "destination-out";//在源图像外显示目标图像。只有源图像外的目标图像部分会被显示，源图像是透明的。
+////        ctx.globalCompositeOperation = "lighter";//显示源图像 + 目标图像。
+////        ctx.globalCompositeOperation = "copy";//显示源图像。忽略目标图像。
+//        ctx.globalCompositeOperation = "xor";//使用异或操作对源图像与目标图像进行组合。
+//        ctx.fillStyle = "red";
+//        ctx.fillRect(50,50,75,50);//源图像
+
+//        var imgData = ctx.createImageData(100,100);//创建新的、空白的 ImageData 对象
+//        for(var i = 0;i < imgData.data.length;i += 4)
+//        {
+//            imgData.data[i] = 80;
+//            imgData.data[i + 1] = 100;
+//            imgData.data[i + 2] = 0;
+//            imgData.data[i + 3] = 100;
+//        }
+//        ctx.putImageData(imgData,10,10);//把图像数据放回画布上
+
+//        ctx.fillStyle = "blue";
+//        ctx.fillRect(10,10,50,50);
+//        var imgData = ctx.getImageData(10,10,50,50);//返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据
+//        for(var i = 0;i < imgData.data.length;i += 4)
+//        {
+//            imgData.data[i] = 80;
+//            imgData.data[i + 1] = 100;
+//            imgData.data[i + 2] = 0;
+//            imgData.data[i + 3] = 100;
+//        }
+//        ctx.putImageData(imgData,10,10);
+    </script>
+</body>
+</html>

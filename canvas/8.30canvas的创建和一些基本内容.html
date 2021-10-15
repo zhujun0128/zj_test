@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <p>要用到的图片：<img src="run.gif" alt="" id="imgs"></p>
+    <button onclick="draw('repeat')">Repeat</button>
+    <button onclick="draw('repeat-x')">Repeat-x</button>
+    <button onclick="draw('repeat-y')">Repeat-y</button>
+    <button onclick="draw('no-repeat')">no-repeat</button>
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+    <script>
+        var ctx = document.getElementById("mycanvas");
+        var cvs = ctx.getContext("2d");//获取上下文的呈现方式，唯一合法值2d，返回一个绘制的环境
+////        cvs.fillStyle = "red";
+//        var my_gradient = cvs.createLinearGradient(0,0,0,600);//设置线性渐变色
+//        my_gradient.addColorStop(0,"gray");
+////        my_gradient.addColorStop(0.5,"yellow");
+//        my_gradient.addColorStop(1,"white");
+//        cvs.fillStyle = my_gradient;
+//        cvs.fillRect(0,0,600,600);//有填充的矩形
+
+//        var my_gradient = cvs.createRadialGradient(100,100,20,100,100,50);//圆形渐变
+//        my_gradient.addColorStop(0,"red");
+//        my_gradient.addColorStop(1,"blue");
+//        cvs.fillStyle = my_gradient;
+//        cvs.fillRect(0,0,200,200);
+////        cvs.arc(100,100,100,0,Math.PI / 180 * 360);//画圆
+////        cvs.fill();
+        //pattern
+        function draw(direction) {
+            cvs.clearRect(0,0,ctx.width,ctx.height);//清理画布
+            var img = document.getElementById("imgs");
+            var pat = cvs.createPattern(img,direction);
+            cvs.fillStyle = pat;
+            cvs.fillRect(0,0,ctx.width,ctx.height);
+        }
+        cvs.strokeStyle = "green";//设置无填充矩形的颜色
+        cvs.strokeRect(200,200,200,200);//无填充矩形
+        cvs.font = "bold 18px Arial";
+        cvs.textAlign = "start";//也可不写，默认是start
+        cvs.fillText("textAlign=start",200,250);//文本,第一个参数为文本的内容，第二个参数为文本的x坐标，第三个参数为文本的y坐标，第四个参数（可选）为文本的宽度
+        cvs.textAlign = "end";
+        cvs.fillText("textAlign=end",200,280);
+        cvs.textAlign = "center";
+        cvs.fillText("textAlign=center",200,310);
+        cvs.textAlign = "left";
+        cvs.fillText("textAlign=left",200,340);
+        cvs.textAlign = "right";
+        cvs.fillText("textAlign=right",200,370);
+
+        cvs.strokeRect(100,420,400,150);
+        cvs.font = "14px Arial";
+        cvs.textBaseline = "top";//文本基线对齐方式
+        cvs.fillText("top",125,420);
+        cvs.textBaseline = "bottom";
+        cvs.fillText("bottom",185,420);
+        cvs.textBaseline = "middle";
+        cvs.fillText("middle",245,420);
+        cvs.textBaseline = "hanging";
+        cvs.fillText("hanging",305,420);
+        cvs.textBaseline = "ideographic";
+        cvs.fillText("ideographic",385,420);
+
+        cvs.font = "26px Arial";
+        cvs.strokeText("坦克",200,200);//文本是空心的
+
+        var text = "hello";
+        var w = cvs.measureText(text).width;
+        cvs.fillText(text,400,30);
+        cvs.fillText("world",400 + w + 10,30);
+    </script>
+</body>
+</html>

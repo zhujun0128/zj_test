@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body onload="onLoad();">
+    <canvas id="mycanvas" width="600" height="600"></canvas>
+    <script>
+        var cvs = document.getElementById("mycanvas");
+        var ctx = cvs.getContext("2d");
+        var gGame = null;
+        function  onLoad() {
+            gGame = new Game();
+            gGame.update();
+        }
+        function Game() {
+            var _this = this;
+            this.tank = new Tank();
+            this.update = function () {
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                _this.tank.isCollision();
+                _this.tank.draw();
+                _this.tank.updatePos();
+                window.requestAnimationFrame(_this.update)
+            }
+        }
+        function Tank() {
+            var _this = this;
+            var tankWidth = 100;
+            var tankHeight = 100;
+            var cvsWidth = cvs.width;
+            var cvsHeight = cvs.height;
+            this.x = Math.floor(Math.random() * (cvsWidth - tankWidth));
+            this.y = Math.floor(Math.random() * (cvsHeight - tankHeight));
+            this.speed = 2;
+            this.dt = 1;
+            this.angle =  Math.floor(Math.random() * 360);
+            this.shell = new Array();
+            this.draw = function () {
+                ctx.fillStyle = "green";
+                ctx.fillRect(_this.x,_this.y,tankWidth,tankHeight);
+                ctx.fillStyle = "red";
+                ctx.font = "bold 24px Arial";
+                ctx.fillText("坦克",_this.x,_this.y);
+                for(var i = 0;i <_this.shell.length;i += 2)
+                {
+                    _this.shell[i] += 2;
+                    console.log(_this.shell[i]);
+                    ctx.fillRect(_this.shell[i],_this.shell[i+1],20,20);
+                    if(_this.shell[i] >= cvsWidth)
+                    {
+                        _this.shell.splice(0,2);
+                    }
+                }
+            };
+            this.updatePos = function () {
+                _this.x += _this.speed * _this.dt * Math.cos(Math.PI / 180 * _this.angle);
+                _this.y += _this.speed *  _this.dt * Math.sin(Math.PI / 180 * _this.angle);
+            };
+            this.isCollision = function () {
+                if(_this.x <= 0||_this.x >= cvsWidth - tankWidth||_this.y <= 0||_this.y >= cvsHeight - tankHeight){
+                    _this.angle -= 180;
+                }
+            };
+            document.onkeydown = function (e) {
+                if(e.keyCode == 32)
+                {
+                    _this.shell.push(_this.x  + tankWidth);
+                    _this.shell.push(_this.y + tankHeight / 2 - 10);
+                }
+                console.log(_this.shell);
+            }
+        }
+        function Shell() {
+            
+        }
+
+    </script>
+</body>
+</html>
