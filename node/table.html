@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        thead{
+            font-weight: bold;
+        }
+        td{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点击" id="btn">
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <td>name</td>
+                <td>age</td>
+                <td>sex</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        var tbd = document.getElementsByTagName("tbody")[0];
+        var btn = document.getElementById("btn");
+        function sendAjax() {
+            var xmlhttp;
+//            var user = document.getElementById("user").value;
+//            var pwd = document.getElementById("pwd").value;
+            /*1.创建XMLHttpRequest*/
+            if(window.XMLHttpRequest){
+                xmlhttp = new XMLHttpRequest();
+            }else{
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+            }
+            /*2.open和send*/
+//            xmlhttp.open("get","http://127.0.0.1:3000?name=" + user + "&pwd=" + pwd,true);
+            xmlhttp.open("get","http://127.0.0.1:3000",true);
+            xmlhttp.send();
+            /*3.*/
+            xmlhttp.onreadystatechange = function () {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                    var data = JSON.parse(xmlhttp.responseText);
+                    for(var i = 0;i < data.length;i++)
+                    {
+                        var tr = document.createElement("tr");
+                        for(var key in data[i])
+                        {
+                            var td = document.createElement("td");
+                            td.innerHTML = data[i][key];
+                            tr.appendChild(td);
+                        }
+                        tbd.appendChild(tr);
+                    }
+                }
+            }
+        }
+        btn.onclick = function () {
+            sendAjax();
+        };
+    </script>
+</body>
+</html>

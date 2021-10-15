@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        .box{
+            width: 500px;
+            margin: 0 auto;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        tr,td{
+            text-align: center;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+         ul > li{
+            width: 30px;
+             height: 30px;
+             text-align: center;
+             line-height: 30px;
+             border: 1px solid #eee;
+             margin-right: 4px;
+             cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年纪</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <ul></ul>
+    </div>
+    <script>
+        function sendAjax(currentPage,num) {
+            $.ajax({
+                url:"http://127.0.0.1:3002?currentPage=" + currentPage + "&num=" + num,
+                type:"get",
+                data:{},
+                success(data){
+                    let resData = data.tempData;
+                    let total = data.total;
+                    let page;
+                    if(resData.length >=1){
+                        $("tbody").html("");
+                        resData.forEach((item) =>{
+                            $("tbody").append(`<tr><td>${item.name}</td><td>${item.sex}</td><td>${item.age}</td></tr>`)
+                        });
+                    }
+                    if(total >= 1){
+                        page = Math.ceil(total / 3);
+                    }
+                    $("ul").html("");
+                    for(let i = 0;i < page;i++){
+                        $("ul").append(`<li>${i + 1}</li>`)
+                    }
+                    $("ul li").click(function () {
+                        let index = $(this).index() + 1;
+                        sendAjax(index,3);
+                    })
+                },
+                err(err){
+                    alert(err);
+                }
+            })
+        }
+        $(function () {
+            sendAjax(1,3);
+        })
+    </script>
+</body>
+</html>

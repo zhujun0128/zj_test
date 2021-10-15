@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="">
+        <label for="user">用户名：</label><input type="text" id="user">
+        <label for="pwd">密码：</label><input type="password" id="pwd">
+        <input type="button" onclick="sendAjax()" value="注册">
+    </form>
+    <script>
+        function sendAjax() {
+            var xmlhttp;
+            var user = document.getElementById("user").value;
+            var pwd = document.getElementById("pwd").value;
+            /*1.创建XMLHttpRequest*/
+            if(window.XMLHttpRequest){
+                xmlhttp = new XMLHttpRequest();
+            }else{
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+            }
+            /*2.open和send*/
+            xmlhttp.open("get","http://127.0.0.1:3000?name=" + user + "&pwd=" + pwd,true);
+            xmlhttp.send();
+            /*3.*/
+            xmlhttp.onreadystatechange = function () {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+//                    console.log(xmlhttp.responseText);
+                    if(xmlhttp.responseText == "true")
+                    {
+                        window.location.href = "index.html";
+                    }
+                    else {
+                        alert("用户名或密码错误！");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
