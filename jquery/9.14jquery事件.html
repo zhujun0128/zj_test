@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        #text{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        #wrapper{
+            width: 200px;
+            height: 100px;
+            overflow-y: scroll;
+            margin-top: 20px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+    <div id="inputs">
+        firstName:<input type="text" value="123"><br>
+        lastName:<input type="text">
+    </div>
+    <form>
+        <input type="submit" value="提交">
+    </form>
+    <div id="wrapper">
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+        text text text text text text text text
+    </div>
+    <button>设置滚动条的位置</button>
+    <script>
+        $(function () {
+            /*$(document).keydown(function (e) {
+                $("#text").html(e.key);
+            });*/
+            /*$(document).keypress(function (e) {
+                $("#text").html(e.key);
+            });*/
+            /*$(document).keydown(function (e) {
+//                e.preventDefault();//阻止一些默认行为
+                console.log("ctrlKey:" + e.ctrlKey);
+                console.log("altKey:" + e.altKey);
+                console.log("shiftKey:" + e.shiftKey);
+                console.log("metaKey:" + e.metaKey);
+            })*/
+            /*$(document).contextmenu(function () {//鼠标右键
+                console.log(1);
+            });*/
+            /*$("#text").mousemove(function () {
+                console.log(1);
+            })*/
+            /*$("input").focus(function () {
+                console.log("我获取了焦点");
+            });
+            $("input").blur(function () {
+                console.log("我失去了焦点");
+            });*/
+            /*$("#inputs").focusin(function () {//只要有一个input框获取焦点就会执行
+                $(this).css("border","1px solid red");
+            });
+            $("#inputs").focusout(function () {//只要有一个input框失去焦点就会执行
+                $(this).css("border","none");
+            });*/
+            /*$("input:first").change(function () {
+                console.log($(this).val());
+            });*/
+            /*$("input:first").select(function () {//当textarea或文本类型的文本元素被选择中了就触发该事件
+                console.log("我被选中了");
+            });*/
+            /*$("form").submit(function (e) {
+                e.preventDefault();
+                console.log("我被提交了");
+            });*/
+            $("#wrapper").scroll(function () {
+                //scrollTop()设置和获取滚动条的位置
+                console.log($(this).scrollTop());//获取
+            });
+            $("button").click(function () {
+                $("#wrapper").scrollTop(110);//设置
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        #parent{
+            width: 400px;
+            height: 400px;
+            background-color: red;
+        }
+        #child{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+        #grandson{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent" onclick="parent()">
+        parent
+        <div id="child" onclick="child()">
+            child
+            <div id="grandson" onclick="grandson()">
+                grandson
+            </div>
+        </div>
+    </div>
+    <script>
+        /*默认事件就是冒泡
+         *冒泡是从内往外
+         * 捕获是从外往内
+         * */
+        function parent(e) {
+//            e.stopPropagation();
+            alert("parent");
+        }
+        function child(e) {
+//            e.stopPropagation();
+            alert("child");
+        }
+        function grandson(e) {
+//            e.stopPropagation();
+            alert("grandson");
+        }
+        /*addEventListener
+        * 第一个参数：事件的名字
+        * 第二个参数：回调函数
+        * 第三个参数：bool true捕获|false冒泡
+        * */
+        var parents = document.getElementById("parent");
+        var childs = document.getElementById("child");
+        var grandsons = document.getElementById("grandson");
+//        parents.addEventListener("click",parent,false);
+//        childs.addEventListener("click",child,false);
+//        grandsons.addEventListener("click",grandson,false);
+        parents.addEventListener("click",parent,true);
+        childs.addEventListener("click",child,true);
+        grandsons.addEventListener("click",grandson,true);
+    </script>
+</body>
+</html>

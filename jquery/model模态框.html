@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+        }
+        .model{
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .innerbox{
+            width: 500px;
+            height: 400px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <button>打开</button>
+    <div class="model">
+        <div class="innerbox">
+            <button>关闭</button>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("button").eq(0).click(function () {
+                $(".model").css("display","flex");
+            });
+            $("button").eq(1).click(function () {
+                $(".model").hide();
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        #box{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            left: 0;
+            background-color: red;
+            display: none;
+            margin: 10px;
+        }
+        .newColor{
+            background-color: green!important;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <button>开始</button>
+    <button>停止</button>
+    <script>
+        $(function () {
+            $("button:eq(0)").click(function () {
+                //1.JqObject.hide(1000,"linear",function(){})
+                //2.JqObject.hide({duration:1000,easing:"swing",complete:function(){},queue:true)
+
+                /*$("#box").hide(1000,"swing",function () {
+                    console.log("hide动画已完成！");
+                });*/
+                /*$("#box").hide({duration:1000,easing:"linear",complete:function(){
+                    console.log("hide动画已完成！");
+                }});
+                $("#box").show({duration:1000,easing:"linear",complete:function(){
+                    console.log("show动画已完成！");
+                }});*/
+//                $("#box").toggle(1000);//转化，原本是隐藏（显示）的，转化为显示（隐藏）
+                /*1.queue：bool 指示是否在动画序列（默认：fx）中放置动画
+                 *如果为false，则动画立即执行
+                 * queue如果为true（默认），则加入动画序列，按顺序执行
+                 *  */
+                /*$("$box").animate({width:500},{queue:true});
+                $("$box").animate({height:500},{queue:true});
+                $("$box").animate({left:"500px"},{queue:false});*/
+                /*2.queue如果是一个字符串，表示的是自定义动画队列
+                * */
+                /*$("#box").hide({duration:1000,easing:"linear",queue:"muqueue"});
+                $("#box").show({duration:1000,easing:"linear",queue:"muqueue"});
+                $("#box").hide({duration:1000,easing:"linear",queue:"muqueue"});
+                $("#box").show({duration:1000,easing:"linear",queue:"muqueue"});
+                $("#box").dequeue("muqueue");//执行myqueue动画序列*/
+                /*$("#box").fadeOut(1000,function () {
+                    console.log("fadeOut完成");//淡入
+                });
+                $("#box").fadeIn(1000,function () {
+                    console.log("fadeIn完成");//淡出
+                });*/
+                /*$("#box").fadeTo(1000,0.4,function () {
+                    console.log("fadeTo完成");
+                });*/
+                /*$("#box").fadeToggle(1000);//转化，与toggle类似*/
+                /*$("#box").slideUp(1000,"linear",function () {
+                    console.log("slideUp完成");//往上拉
+                });
+                $("#box").slideDown(1000,"linear",function () {
+                    console.log("slideDown完成");//往下拉
+                });*/
+                /*$("#box").slideToggle(1000);//转化，与toggle类似*/
+                /*$("#box").delay(1000).animate({width:"500px",height:"500px"},1000,"linear",function () {
+                    console.log("动画完成");
+                });*/
+                $("#box").show(500);
+                $("#box").animate({left:"+=200"},2000);
+                $("#box").queue(function () {
+                   $(this).addClass("newColor");
+                   $(this).dequeue();
+                });
+                $("#box").animate({left:"-=200"},2000);
+            });
+            $("button:eq(1)").click(function () {
+//                $("#box").stop();//停止当前的动画，进行下一个动画
+//                $("#box").stop(true);//停止所有的动画
+//                $("#box").stop(true,true);//停止所有的动画,但是允许完成当前的动画（立即完成）
+//                $("#box").finish();//停止当前运行的动画，移除所有排队的动画，并为被选元素完成动画
+                $("#box").clearQueue();//从动画序列中移除尚未运行的动画
+            });
+        })
+    </script>
+</body>
+</html>

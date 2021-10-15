@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        select{
+            width: 150px;
+            height: 240px;
+            background: cyan;
+        }
+        thead{
+            background: darkcyan;
+        }
+        td{
+            width: 150px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!--<select name="" id="sel1" multiple="multiple" size="10">-->
+        <!--<option value="香蕉">香蕉</option>-->
+        <!--<option value="苹果">苹果</option>-->
+        <!--<option value="梨子">梨子</option>-->
+        <!--<option value="葡萄">葡萄</option>-->
+        <!--<option value="火龙果">火龙果</option>-->
+        <!--<option value="猕猴桃">猕猴桃</option>-->
+    <!--</select>-->
+    <!--<button><<<</button>-->
+    <!--<button>>>></button>-->
+    <!--<button><</button>-->
+    <!--<button>></button>-->
+    <!--<select name="" id="sel2" multiple="multiple" size="10">-->
+    <!--</select>-->
+    <table border="1">
+        <thead>
+            <tr>
+                <td>标题</td>
+                <td>地址</td>
+                <td>说明</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <button>点击动态添加</button>
+    <script>
+//        $("button:eq(0)").click(function () {
+//            $("#sel1").append($("#sel2 option"));
+//        });
+//        $("button:eq(1)").click(function () {
+//            $("#sel2").append($("#sel1 option"));
+//        });
+//        $("button:eq(2)").click(function () {
+//            $("#sel1").append($("#sel2 option:selected"));
+//        })
+//        $("button:eq(3)").click(function () {
+//            $("#sel2").append($("#sel1 option:selected"));
+//        })
+        var data = [{name:"中竞教育",url:"http://www.zjjy.cn",type:"IT"},{name:"程序员",url:"http://www.zjjy.cn",type:"大学生IT培训"},{name:"H5游戏和前端开发",url:"http://www.zjjy.cn",type:"前端开发"}];
+        $("button").click(function () {
+            $("tbody").html("");
+            for(var i = 0;i < data.length;i++)
+            {
+                $("tbody").append("<tr>");
+                for(var key in data[i])
+                {
+                    $("tbody").append("<td>"+data[i][key]+"</td>");
+                }
+                $("tbody").append("</tr>");
+            }
+        })
+    </script>
+</body>
+</html>

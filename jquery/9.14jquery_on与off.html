@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        #box{
+            width: 150px;
+            height: 150px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <p>点击修改背景颜色<span></span></p>
+    <button id="btn">点击</button>
+    <h2 id="h">自定义事件</h2>
+    <div id="box"></div>
+    <input type="text" value="123">
+    <script>
+        /*1.on*/
+        $(function () {
+            /*$("button").on("click",{name:"lisi"},function (e) {
+//                console.log("我被点击了");
+                $("p").text(e.data.name);
+            });*/
+            /*2.on 也可以自定义事件*/
+            /*$("#h").on("myOwnEvent",function (e,name) {
+                console.log(name + " welcome to our school");
+            });
+            $("#btn").click(function () {
+                $("#h").trigger("myOwnEvent","anna");
+            });*/
+            /*3.on 使用map参数去统一处理多个事件*/
+
+            /*$("#box").on({
+                mouseover:function () {
+                    $(this).css("backgroundColor","pink");
+                },
+                mouseout:function () {
+                    $(this).css("backgroundColor","blue");
+                },
+                click:function () {
+                    $(this).css("backgroundColor","yellow");
+                }
+            });*/
+
+            /*$("p").on("click",function () {
+                $(this).css("backgroundColor","pink");
+            });
+            $("#btn").click(function () {
+                $("p").off("click");
+            });*/
+
+            /*var i = 0;
+            $("p").one("click",function () {
+                i++;
+                $(this).find("span").html(i);
+            });
+            $("#btn").click(function () {
+                $("p").off("click");
+            });*/
+
+            /*与triggle不同，triggleHandler()方法不会引发事件的默认行为（文本不会被选中）*/
+            /*$("input").on("select",function () {
+                $("input").after("text selected!!!");
+            });
+            $("#btn").click(function () {
+                $("input").trigger("select");
+            });*/
+
+            $("input").on("select",function () {
+                $("input").after("text selected!!!");
+            });
+            $("#btn").click(function () {
+                $("input").triggerHandler("select");
+            })
+        })
+    </script>
+</body>
+</html>

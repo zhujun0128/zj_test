@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        .box td{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            background: gray;
+            border-collapse: collapse;
+        }
+        .intro{
+            color: red;
+        }
+        ul li{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--<button>Click Me</button>-->
+    <!--<p id="test">这是一个段落1</p>-->
+    <!--<p class="myClass">这是一个段落2</p>-->
+    <!--<p class="myClass" name="para1">这是一个段落3</p>-->
+    <!--<input type="text">-->
+    <!--<input type="text">-->
+    <!--<input type="text">-->
+    <!--<div>-->
+        <!--<strong>-->
+            <!--123-->
+        <!--</strong>-->
+        <!--<p>-->
+            <!--<strong>-->
+                <!--456-->
+            <!--</strong>-->
+        <!--</p>-->
+    <!--</div>-->
+    <!--<ul>-->
+        <!--<li>item_1</li>-->
+        <!--<li>item_2-->
+            <!--<span>item_span</span>-->
+        <!--</li>-->
+        <!--<li>item_3-->
+            <!--<strong>item_strong</strong>-->
+        <!--</li>-->
+        <!--<li>item_4</li>-->
+        <!--<li class="text">item_5</li>-->
+        <!--<li>item_6</li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+        <!--<li>班长今天老帅了，嗷嗷帅...</li>-->
+    <!--</ul>-->
+    <!--<table class="box">-->
+        <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+    <!--</table>-->
+    <!--<p>this is a paragraph</p>-->
+    <!--<p>this is a paragraph</p>-->
+    <!--&lt;!&ndash;<button>是否具有intro类</button>&ndash;&gt;-->
+    <!--<button>转换toggleClass</button>-->
+    <!--<input type="text">-->
+    <!--<a>点击我跳转百度</a>-->
+    <!--<ul>-->
+        <!--<li>1</li>-->
+        <!--<li>2</li>-->
+        <!--<li>3</li>-->
+        <!--<li>4</li>-->
+        <!--<li>5</li>-->
+    <!--</ul>-->
+    <div id="d_box">
+        <p>段落1</p>
+        <p>段落2</p>
+        <p>段落3</p>
+        <p>段落4</p>
+    </div>
+    <select name="" id="sel" multiple="multiple" size="10">
+        <option value="red">red</option>
+        <option value="blue">blue</option>
+        <option value="yellow">yellow</option>
+    </select>
+    <button>删除</button>
+    <script>
+//        $(document).ready(function () {
+//
+//        })
+//        $(function () {
+//            $("button").click(function () {
+////                $(this).hide(1000);
+////                $("p").html("修改了段落的内容");
+////                $("#test").html("修改了段落的内容");
+////                $(".myClass").html("修改了段落的内容");
+////                $("p[name='para1']").html("修改了段落的内容");
+////                $("p:first").html("修改了段落的内容");
+////                $("p:last").html("修改了段落的内容");
+////                $("p:odd").css("backgroundColor","red");//odd为偶数
+////                $("p:even").css("backgroundColor","blue");//even为奇数
+////                $("input:last").focus();//添加一个焦点
+////                $("input:focus").css("backgroundColor","blue");
+////                $("div strong").css("color","blue");
+//                $("button,input").css("border","1px solid red");
+//            })
+//        })
+        
+        $(function () {
+//            $("ul li").first().css("backgroundColor","red");
+//            $("ul li").last().css("backgroundColor","blue");
+//            $("ul li").has("strong,span").css("border","1px solid blue");
+//            $("ul li").slice(4).css("backgroundColor","green");
+//            $("ul li").slice(1,4).css("backgroundColor","red");
+//            $("ul").children().css("backgroundColor","pink");//获取全部的直接子元素
+//            $("ul").children(".text").css("backgroundColor","blue");//获取指定的子元素
+//            $(".text").parent().css("border","1px solid blue");
+//            $("ul li:eq(3)").css("backgroundColor","red");
+//            $("ul").find("span").css("border","1px solid red");
+//            $("ul .text").siblings().css("border","1px solid red");//查找不包括直接的兄弟元素
+//            $("ul li:odd").css("backgroundColor","yellow");
+//            $("ul li:even").css("backgroundColor","red");
+//            $(".box tr").mousemove(function () {
+//                $(this).children().css("backgroundColor","blue");
+//            }).mouseout(function () {
+//                $(this).children().css("backgroundColor","gray");
+//            });
+
+//            $("button").click(function () {
+//                var flag = $("p:first").hasClass("intro");
+//                if(!flag)
+//                {
+//                    $("p:first").addClass("intro");
+//                }
+//                else
+//                {
+//                    $("p:first").removeClass("intro");
+//                }
+//            })
+
+//            $("button").click(function () {
+//                $("p").toggleClass("intro");//true只添加，不删除；false只删除，不添加
+//            })
+//            $("p").text("我是设置后的");//设置值
+//            console.log($("p").text());//获取值
+//            $("p").html("<strong>我是设置后的</strong>");//设置值
+//            console.log($("p").html());//获取值
+//            $("input").val("123");//设置表单的value值
+//            console.log($("input").val());//获取值
+//            $("a").attr({"href":"http://www.baidu.com","target":"_blank"});//利用对象可以添加多个属性
+//            console.log($("a").attr("href"));
+//            $("a").css({color:"red",border:"1px solid blue"});
+//            console.log($("a").css("color"));
+
+//            $("ul li").each(function (t,e) {
+//                $(e).css("backgroundColor","rgb("+Math.floor(Math.random()*256)+","+Math.floor(Math.random()*256)+","+Math.floor(Math.random()*256)+")");
+//            });
+//            var li_color = "";
+//            $("ul li").mouseover(function () {
+//                li_color = $(this).css("backgroundColor");
+//                $(this).css("backgroundColor","blue");
+//            }).mouseout(function () {
+//                $(this).css("backgroundColor",li_color);
+//                console.log(li_color);
+//            })
+
+//            $("#d_box").append("<p>hello world</p>");//尾部添加
+//            $("#d_box").prepend("<p>hello world</p>");//头部添加
+//            $("#d_box p:eq(2)").after("<p>hello world</p>");//在莫莫元素之后进行插入
+//            $("#d_box p:eq(1)").before("<p>hello world</p>");//在莫莫元素之前进行插入
+
+            $("#sel").change(function () {
+                $("#sel option:selected").css({color:"red",backgroundColor:"green"});
+            });
+
+            $("button").click(function () {
+//                $("#d_box").remove();//包括他自身一起被删除
+                $("#d_box").empty();//不包括他自身
+            })
+
+
+        })
+    </script>
+</body>
+</html>
