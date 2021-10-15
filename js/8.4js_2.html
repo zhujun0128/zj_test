@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>请输入5到10之间的一个数</p>
+<input type="text" id="demo">
+<button onclick="myFunction()">检测输入</button>
+<p id="message"></p>
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo").value;
+        try{
+            if(x == "") throw "为空";
+            if(x > 10) throw "不在范围内，数字太大了";
+            if(x < 5) throw "不在范围内，数字太小了";
+            if(isNaN(x)) throw "不是一个数字";
+        }
+        catch (err){
+            document.getElementById("message").innerHTML = err;
+            return;
+        }
+        document.getElementById("message").innerHTML = "数字正确";
+    }
+
+//    var arr =new Array();
+//    for(var i = 1; i <= 100; i++ )
+//        arr[i-1] = i;
+
+//    var obj ={
+//        score: 80,
+//        age: 20,
+//        text: 60
+//    };
+//    var sum = 0;
+//    for(var key in obj)
+//        sum += obj[key];
+//    function getSumByArray(arr) {
+//        var sum = 0;
+//        if(arr.length == 0)
+//            return ;
+//        for(var i = 0; i < arr.length; i++)
+//        {
+//            sum += arr[i];
+//        }
+//        return sum;
+//    }
+//    var arr = [1,2,3,4];
+//    document.write(getSumByArray(arr));
+
+</script>
+</body>
+</html>

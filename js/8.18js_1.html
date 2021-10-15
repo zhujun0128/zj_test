@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var obj = {color:"green",age:18,eat:function () {
+//        console.log("吃饭");
+//    }};
+//    function Animal() {
+//
+//    }
+//    Animal.prototype = obj;
+//    var cat = new Animal();
+//    var dog = new Animal();
+//    console.log(cat.color);//green
+//    console.log(dog.color);//green
+
+    var obj = {age:50,printId:function () {
+        console.log(this.id);
+    },printName:function () {
+        console.log(this.name);
+    },printAge:function () {
+        console.log(this.age);
+    }};
+    function Student(name,age,id) {
+        this.name = name;
+        this.age = age;
+        this.id = id;
+    }
+    Student.prototype = obj;
+    var student = new Student("zhangsan",18,2014);
+    student.printAge();
+    student.printName();
+    student.printId();
+
+//    for(var key in student)
+//    {
+////        console.log(key);
+//        //哪些是自身属性，哪些是父亲那里继承的， hasOwnProperty
+//        if(student.hasOwnProperty(key))
+//        {
+//            console.log(key);
+//        }
+//    }
+</script>
+</body>
+</html>

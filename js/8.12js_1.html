@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    function myFun1(num) {
+        if(num > 1)
+        {
+            return num * myFun1(num - 1);
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    console.log(myFun1(5));
+
+    //闭包
+    //一个函数有权访问另外一个函数的所以变量，属性，我们称之为闭包
+    //闭包带来的影响：导致内存的泄露
+    var box =document.getElementsByTagName("div");
+    for(var i = 0;i < box.length;i++)
+    {
+        box[i].onclick = (function (a) {
+            return function () {
+                alert(a);
+            }
+        })(i)
+    }
+
+
+
+</script>
+</body>
+</html>

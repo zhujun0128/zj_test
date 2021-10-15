@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var arr = [1,2,3,4,5];
+//    for(var i = arr.length - 1;i >= 1;i--)
+//    {
+//        var key = Math.floor(Math.random() * i);
+//        console.log(key);
+//        var temp;
+//        temp = arr[key];
+//        arr[key] = arr[i];
+//        arr[i] = temp;
+//    }
+//    console.log(arr);
+
+//    var arr = [1,2,3,4,5];
+//    Array.prototype.changeNum = function () {
+//        for(var i = 0;i < this.length;i++)
+//        {
+//            this[i] += 2;
+//        }
+//        return this.length;
+//    };
+//    var t = arr.changeNum();
+//    console.log(t);
+//    console.log(arr);
+
+//    var arr = [1,2,3,4,5];
+//    Array.prototype.changeNum1 = function () {
+//        var arrnew = JSON.parse(JSON.stringify(this));
+//        for(var i = 0;i < arrnew.length;i++)
+//        {
+//            arrnew[i] += 2;
+//        }
+//        return arrnew;
+//    };
+//    console.log(arr.changeNum1());
+//    console.log(arr);
+
+    var arr = [1,2,3,4,5];
+    Array.prototype.shuffle = function () {
+        for(var i = this.length - 1;i >= 1;i--)
+        {
+            var key = Math.floor(Math.random() * i);
+            console.log(key);
+            var temp;
+            temp = this[key];
+            this[key] = this[i];
+            this[i] = temp;
+        }
+        return this;
+    };
+    console.log(arr.shuffle());
+    console.log(arr.shuffle());
+    console.log(arr);
+</script>
+</body>
+</html>

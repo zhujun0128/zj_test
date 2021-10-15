@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var body = document.getElementsByTagName("body")[0];
+        body.onmousedown = function (e) {
+            //获取鼠标点击的位置，pageX,clientX;pageY,clientY当没有滚动的时候的得到的值是一致的
+            console.log("e.clientX：" + e.clientX + "e.clientY：" + e.clientY);//针对文档在屏幕里的可见区域
+            console.log("e.pageX：" + e.pageX + "e.pageY：" + e.pageY);//针对整个文档的位置
+        }
+    }
+
+</script>
+</body>
+</html>

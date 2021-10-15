@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*#box{*/
+            /*width: 400px;*/
+            /*height: 400px;*/
+            /*background-color: red;*/
+        /*}*/
+        .box{
+            width: 400px;
+            height: 400px;
+            border: 1px solid;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="box"></div>-->
+<div class="box"></div>
+<div class="box"></div>
+<script>
+//    var box = document.getElementById("box");
+//    box.style.backgroundColor = "yellow";
+//    var p = document.createElement("p");
+//    p.innerHTML = "我是新增的段落";
+//    box.appendChild(p);
+//    var tags = document.getElementsByTagName("div");
+//    for(var i = 0;i < tags.length;i++)
+//    {
+//        tags[i].style.backgroundColor = "red";
+//    }
+    var box = document.getElementsByClassName("box")[1];
+    box.style.backgroundColor = "yellow";
+</script>
+</body>
+</html>

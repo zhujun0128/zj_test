@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="jump()">点击跳转</button>
+    <button onclick="forwords">点击历史前进</button>
+    <script>
+        //location.href 进行跳转
+        function jump() {
+            location.href = "https://www.baidu.com";
+//            location.replace("***.html");
+//            location.reload();//重新加载 刷新当前的浏览器
+        }
+
+        console.log(location.host);
+        console.log(location.search);
+        console.log(location.hash);
+
+        function forwords() {
+            history.forward();//历史记录前进一格
+        }
+        function backs() {
+            history.back();//历史记录后退一格
+        }
+        function gos() {
+            history.go(2);//历史进入前进2格
+        }
+        function backs_gos() {
+            history.go(-2);//历史进入后退2格
+        }
+    </script>
+</body>
+</html>

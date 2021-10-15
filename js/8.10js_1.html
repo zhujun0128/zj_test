@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        select{
+            width: 150px;
+            height: 200px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="checkbox" id="checkbox">游泳</input>
+    <button id="btn1">动态选择</button>
+    <button id="btn2">取消选择</button>
+    <button id="btn3">获取当前选择框的状态</button>
+    <hr>
+</div>
+<div>
+    <select name="selectList" id="select1" size="10" multiple="multiple">
+        <option>苹果</option>
+        <option>香蕉</option>
+        <option>梨子</option>
+        <option>荔枝</option>
+        <option>杨梅</option>
+        <option>西瓜</option>
+        <option>椰子</option>
+        <option>蓝莓</option>
+    </select>
+    <button id="s_btn1" onclick="myFun(select1,select2)">>>></button>
+    <button id="s_btn2" onclick="myFun(select2,select1)" ><<<</button>
+    <button id="s_btn3" onclick="myFun1(select1,select2)">></button>
+    <button id="s_btn4"onclick="myFun1(select2,select1)"><</button>
+    <select name="selectList" id="select2" size="10" multiple="multiple">
+    </select>
+</div>
+<script>
+    var checkbox = document.getElementById("checkbox");
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var btn3 = document.getElementById("btn3");
+    btn1.onclick = function () {
+        checkbox.checked = true;
+    }
+    btn2.onclick = function () {
+        checkbox.checked = false;
+    }
+    btn3.onclick = function () {
+        var check = checkbox.checked;
+        console.log(check);
+    }
+
+    function myFun(se1,se2) {
+        for(var i = se1.length - 1;i >= 0;i--)
+        {
+            if(se1.options[i].selected)
+            {
+                se2.appendChild(se1.options[i]);
+            }
+        }
+    }
+    function myFun1(se1,se2) {
+        var num = 0;
+        var key;
+        for(var i = 0;i < se1.length;i++)
+        {
+            if(se1.options[i].selected)
+            {
+                num ++;
+                key = i;
+            }
+        }
+        if(num == 1)
+        {
+            se2.appendChild(se1.options[key]);
+        }
+        else if(num == 0)
+        {
+            alert("请选择一个水果！");
+        }
+        else
+        {
+            alert("最多只能选择一个水果！");
+        }
+    }
+</script>
+</body>
+</html>

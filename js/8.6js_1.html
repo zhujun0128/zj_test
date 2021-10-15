@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #bt1{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+            top:300px;
+            left: 300px;
+            background-color: aqua;
+            cursor: pointer;
+        }
+        #bt1 span{
+            display: inline-block;
+            position: absolute;
+            background-color: red;
+            transition: all 2s;
+            opacity: 0;
+        }
+        #line1{
+            width: 100px;
+            left: -100px;
+            top: 0px;
+            height: 2px;
+        }
+        #line2{
+            width: 100px;
+            left: 100px;
+            top: 50px;
+            height: 2px;
+        }
+        #line3{
+            width: 2px;
+            top: 50px;
+            height: 50px;
+            left: 0px;
+        }
+        #line4{
+            width: 2px;
+            top: -50px;
+            left: 100px;
+            height: 50px;
+        }
+        #d1{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 300px;
+            top:100px;
+            background-color: lightpink;
+            transition: all 2s;
+            transform: scale(1,1);
+        }
+        /*#d1:hover{*/
+            /*transform: scale(2,2) rotate(2turn);*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div>
+    <div id="d1"></div>
+    <a herf="#" id="bt1">按钮
+    <span id="line1"></span>
+    <span id="line2"></span>
+    <span id="line3"></span>
+    <span id="line4"></span></a>
+</div>
+<script>
+    var btn = document.getElementById("bt1");
+    var l1 = document.getElementById("line1");
+    var l2 = document.getElementById("line2");
+    var l3 = document.getElementById("line3");
+    var l4 = document.getElementById("line4");
+    var d1 = document.getElementById("d1");
+    btn.onmouseover = function () {
+        l1.style.left = "0px";
+        l1.style.opacity = "1";
+        l2.style.left = "0px";
+        l2.style.opacity = "1";
+        l3.style.top = "0px";
+        l3.style.opacity = "1";
+        l4.style.top = "0px";
+        l4.style.opacity = "1";
+    }
+    btn.onmouseout =  function () {
+        l1.style.left = "-100px";
+        l1.style.opacity = "0";
+        l2.style.left = "100px";
+        l2.style.opacity = "0";
+        l3.style.top = "50px";
+        l3.style.opacity = "0";
+        l4.style.top = "-50px";
+        l4.style.opacity = "0";
+    }
+    d1.onmouseover = function () {
+        d1.style.transform = "scale(2,2) rotate(2turn)";
+    }
+    d1.onmouseout = function () {
+        d1.style.transform = "scale(1,1) rotate(1turn)";
+    }
+</script>
+</body>
+</html>

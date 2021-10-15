@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            border: 1px solid;
+        }
+        button{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<button id="btn">停止</button>
+<script>
+//    var count = 1;
+//    var timer;
+//    function  countPlus() {
+//        count++;
+//        if(count == 30)
+//        {
+//            clearInterval(timer);
+//        }
+//        console.log(count);
+//    }
+//    timer = setInterval(countPlus,500);//每隔一定的毫秒数去调用函数，有一个返回值，这个返回值可以传递给clearInterval清除定时器
+
+//    var box = document.getElementById("box");
+//    var btn =document.getElementById("btn");
+//    var lef = 0;
+//    var timer;
+//    function moveBox() {
+//        lef += 20;
+//        box.style.left = lef + "px";
+//    }
+//    timer = setInterval(moveBox,50);
+//    btn.onclick = function () {
+//        clearInterval(timer);
+//    }
+
+    //requsetAnimationFrame() 刷新的频率和屏幕的刷新频率一致
+//    var count = 0;
+//    function walk() {
+//        count++;
+//        if(count <=30)
+//        {
+//            console.log(count);
+//            window.requestAnimationFrame(walk);
+//        }
+//    }
+//    walk();
+
+    var box = document.getElementById("box");
+    var lef = 0;
+    function walk() {
+        lef += 20;
+        box.style.left = lef + "px";
+        if(lef <= 200)
+        {
+            requestAnimationFrame(walk);
+        }
+    }
+    walk();
+</script>
+</body>
+</html>

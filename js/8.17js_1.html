@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<script>
+    //1.this指向window
+//    var a = 3;
+//    var b = 4;
+//    var c = this.a+this.b;
+//    console.log(this === window);//true
+//    console.log(c);//7
+
+    //2.函数的指向,函数调用this指向的window
+//    var a = 4;
+//    var b = 5;
+//    function t() {
+//        var a = 1;
+//        var b = 2;
+//        console.log(this === window);//true
+//        return this.a + this.b//9
+//    }
+//    t();
+
+////    3.方法中的this指向的是调用他的父级
+//    var a = 4;
+//    var b = 5;
+//    var obj = {a:1,b:2,p:function () {
+//        console.log(this.a + this.b);
+//    }};
+//    obj.p();//3
+//    obj.p.call(window);//9
+
+//    //4.构造函数中的this指向是创建的实例对象
+//    function Person(name,age) {
+//        this.name = name;
+//        this.age = age;
+//        this.eat = function () {
+//            console.log("吃饭");
+//        };
+//        this.calcute = function () {
+//            console.log(this.age + 10);
+//        };
+//    }
+//    var zhangsan = new Person("zs",18);
+//    zhangsan.calcute();//28
+//    var lisi = new Person("lisi",20);
+//    lisi.calcute();//30
+
+    //call 第一个参数this的指向，第二个，第三个依次是传递的参数
+//    var x = 10;
+//    var o = {x:15};
+//    function f() {
+//        alert(this.x);
+//    }
+//    f();//10
+//    f.call(o);//15
+
+//    function f(a,b) {
+//        return a + b;
+//    }
+//    var t = f.call(this,1,2);  ->等价于var t = f.apply(this,[1,2]);
+//    console.log(t);//3
+
+//    function f(a,b) {
+////        console.log(arguments[0]);//1
+////        console.log(a);//1
+//        console.log(arguments.callee.length);//2   形参的个数
+//        var t = Array.prototype.concat.apply([1,2,3],arguments);
+//        console.log(t);//[1,2,3,1]
+
+    //1.把arguments对象转化为数组
+    //    var t = Array.prototype.slice.apply(arguments);
+    //    console.log(t);
+    //
+    //    //2.把arguments对象转化为数组
+    //    var arg = [];
+    //    for(var i = 0;i < arguments.length;i++)
+    //    {
+    //        arg.push(arguments[i]);
+    //    }
+    //    console.log(arg);
+
+//    }
+//    console.log(f.length);//2  形参的个数
+//    f(1);
+
+//
+
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = "aahhgggssssjjjs";
+    var newstr = "";
+//    function removeRepeat1(str){
+//        var flag;
+//        for(var i = 0; i < str.length; i++)
+//        {
+//            flag=true;
+//            for(var j = 0; j < newstr.length; j++)
+//            {
+//                if(str[i] == newstr[j])
+//                {
+//                    flag = false;
+//                    break;
+//                }
+//            }
+//            if(flag)
+//            {
+//                newstr+=str[i];
+//            }
+//        }
+//        document.write(newstr + "<br><hr>");
+//    }
+//
+//    function removeRepeat2(str) {
+//        for (var i = 0; i < str.length; i++)
+//        {
+//            if (newstr.indexOf(str[i]) == -1)
+//            {
+//                newstr += str[i];
+//            }
+//        }
+//        document.write(newstr + "<br><hr>");
+//    }
+//
+//    removeRepeat1(str);
+//    removeRepeat2(str);
+
+    var num = new Array();
+    var key = 0;
+    function getNumByStr1(str) {
+        var flag;
+        for(var i = 0; i < str.length; i++)
+        {
+            flag=true;
+            for(var j = 0; j < newstr.length; j++)
+            {
+                if(str[i] == newstr[j])
+                {
+                    flag = false;
+                    num[j] += 1;
+                    break;
+                }
+            }
+            if(flag)
+            {
+                newstr+=str[i];
+                num[key++] = 1;
+            }
+        }
+        for(var i = 0; i < newstr.length; i++)
+        {
+            document.write(newstr[i] + "出现了" + num[i] + "<br/>");
+        }
+        document.write("<hr>");
+    }
+
+    function getNumByStr2(str) {
+        var obj ={};
+        for(var i = 0; i < str.length; i++)
+        {
+            var key = str[i];
+            if(obj[key] == undefined)
+            {
+                obj[key] = 1;
+            }
+            else
+            {
+                obj[key] += 1;
+            }
+        }
+        for(var key in obj)
+        {
+            document.write(key + "出现了" + obj[key] + "<br/>");
+        }
+        document.write("<hr>");
+    }
+    getNumByStr1(str);
+    getNumByStr2(str);
+</script>
+</body>
+</html>

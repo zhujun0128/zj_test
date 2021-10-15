@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="p1">123</p>
+<script>
+//    var arr = [1,2,3,undefined,7,undefined,7];
+//    var sum = 0;
+//    for(var i = 0;i < arr.length;i++)
+//    {
+//        if(!isNaN(arr[i]))
+//            sum += arr[i];
+//    }
+//    document.write(sum);
+
+    var obj ={
+        name:"zhangsan",
+        score:[70,80,90],
+        getSumScore:function () {
+            var sum = 0;
+            for(var i = 0;i < this.score.length; i++)
+                sum += this.score[i];
+            document.getElementById("p1").innerHTML = this.name + "的成绩为" +this.score + "他（她）的总成绩为" + sum;
+        }
+    }
+    obj.getSumScore();
+</script>
+</body>
+</html>

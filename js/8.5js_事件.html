@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body onload="loaded()">
+<input type="text" onfocus="focusinput(this)" onblur="blur1(this)">
+<button onclick="start()">点击开始</button>
+<br>
+<input type="text" id="inp">
+<div id="box"></div>
+<script>
+    function loaded() {
+        alert("页面加载完毕");
+    }
+    function change(_this) {
+        console.log(_this.value);
+    }
+    function blur1(_this) {
+        console.log("我是失去焦点的时候出发...");
+    }
+    function focusinput(_this) {
+        console.log("我是获取焦点的时候出发...");
+    }
+    function start() {
+        console.log(0);
+    }
+    var inp = document.getElementById("inp");
+    inp.onchange =function () {
+        console.log(this.value);
+    }
+    var box = document.getElementById("box");
+    box.onmouseover = function () {
+        this.style.backgroundColor = "red";
+    }
+    box.onmouseout = function () {
+        this.style.backgroundColor = "green";
+    }
+    document.onkeydown =function (e) {
+//        console.log(e.keyCode);//下：40；上：38；左：37；右：39
+        //根据keyCode的值，打印上右下左
+//        if(e.keyCode == 37)
+//            console.log("左");
+//        if(e.keyCode == 38)
+//            console.log("上");
+//        if(e.keyCode == 39)
+//            console.log("右");
+//        if(e.keyCode == 40)
+//            console.log("下");
+        switch (e.keyCode){
+            case 37:console.log("左");break;
+            case 38:console.log("上");break;
+            case 39:console.log("右");break;
+            case 40:console.log("下");break;
+            default:break;
+        }
+    }
+</script>
+</body>
+</html>

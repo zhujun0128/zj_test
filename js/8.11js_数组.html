@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //push 功能：向尾部添加 修改了原数组 返回值：数组长度
+    var a = [];
+    a.push("zero");
+    console.log(a);
+    var t = a.push("one","two");
+    console.log(t);
+    console.log(a);
+
+    var obj = {a:5,b:6,c:7};
+    var arr = new Array();
+    for(var key in obj)
+    {
+        arr.push(obj[key]);
+    }
+    console.log(arr);
+
+    //pop尾部删除，使数组长度-1 修改了原数组 返回值：删除的值
+    var t = arr.pop();
+    console.log(t);
+    console.log(arr);
+
+    //unshift 头部添加 修改了原数组 返回值：数组长度
+    var  t = arr.unshift(4);
+    console.log(t);
+    console.log(arr);
+
+    //shift 头部删除 修改了原数组 返回值：返回删除的值
+    var t = arr.shift();
+    console.log(t);
+    console.log(arr);
+
+    //forEach 数组的遍历  每个元素都必须遍历，无法在函数内中途结束(break ,return同样),第一个参数元素，第二个参数下标
+    //return 只是终止本次继续执行，而不是终止整个遍历
+    var data = [0,1,2,3,4];
+    var sum = 0;
+    data.forEach(function (val) {
+        sum += val;
+    });
+    console.log(sum);
+
+    //join 把数组变成字符串  不修改原数组
+    var arr = [4,5,6];
+    var t = arr.join();
+    console.log(t);//"4,5,6"
+    var t = arr.join(" ");
+    console.log(t);//"4 5 6"
+    var t = arr.join("");
+    console.log(t);//"456"
+
+    //reverse 修改了原数组
+    var a = [1,2,3];
+    var t = a.reverse();
+    console.log(t);
+    console.log(a);
+
+    //sort 不带参数的时候排列，是按照字符顺序排列
+    var a = ["banana","cherry","apple"];
+    var t = a.sort();
+    console.log(t);
+    console.log(a);
+
+    var a = [33,4,1111,222];
+    console.log(a.sort());
+    //按照升序排列
+    a.sort(function (a,b) {
+        return a - b;
+    });
+    console.log(a);
+    //按照降序排列
+//    a.sort(function (a,b) {
+//        return b - a;
+//    });
+//    console.log(a);
+
+    var arr = [{id:2,name:"lisi"},{id:1,name:"wangwu"},{id:3,name:"zhangsan"}];
+    arr.sort(function (a,b) {
+        return a.id - b.id;
+    })
+    console.log(arr);
+
+    //按照order中指定的id顺序进行排序
+    var arr = [{id:7,name:"lisi"},{id:3,name:"wangwu"},{id:2,name:"liusi"},{id:4,name:"lili"},
+        {id:0,name:"susan"},{id:6,name:"jack"},{id:9,name:"wangwu"}];
+    var order = [2,4,0,9,7,3,6];
+    arr.sort(function (a,b) {
+        return order.indexOf(a.id) - order.indexOf(b.id);
+    });
+    console.log(arr);
+
+    //concat 拼接作用，不会修改原数组
+    var a = [1,2,3];
+    console.log(a.concat(4, 5));//[1,2,3,4,5]
+    console.log(a.concat([4, 5], [6, 7]));//[1,2,3,4,5,6,7]
+    console.log(a.concat([4, [5, 6]], 7));//[1,2,3,4,[5,6],7]
+    console.log(a);
+
+    //slice 不会修改原数组
+    var a = [1,2,3,4,5];
+    console.log(a.slice(0, 3));
+    console.log(a);
+
+    //splice 插入或删除 修改原数组 返回删除的值
+    var a = [1,2,3,4,5,6,7,8];
+    console.log(a.splice(4));//[5,6,7,8]
+    console.log(a);//[1,2,3,4]
+    console.log(a.splice(1, 2));//[2,3]
+    console.log(a);//[1,4]
+    console.log(a.splice(1, 1));//[4]
+    console.log(a);//[1]
+
+    var a = [1,2,3,4,5];
+    console.log(a.splice(2, 0, "a", "b"));//第二个参数为0，表示没有删除，返回[]
+    console.log(a);//[1,2,"a","b",3,4,5]
+    console.log(a.splice(2, 2, [1, 2], 3));//["a","b"]
+    console.log(a);//[1,2,[1,2],3,3,4,5]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="d1">
+    <div id="p1">this is a paragraph</div>
+    <div id="p2">this is another paragraph</div>
+</div>
+<script>
+    var p = document.createElement("p");
+    var textNode = document.createTextNode("this is new");
+    //父级.appendChild(node);向尾部追加
+    p.appendChild(textNode);
+
+    var d1 = document.getElementById("d1");
+    var p1 = document.getElementById("p1");
+    var p2 = document.getElementById("p2");
+    //d1.appendChild(p);
+    //插入到指定的位置，第一个参数newChild，第二个参数refChild
+//    d1.insertBefore(p,p2);
+    //移除，父级.removeChild(node)
+//    d1.removeChild(p1);
+    //不知道父级是谁的时候，可以通关node.parentNode来获取父级
+//    p1.parentNode.removeChild(p1);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var p = {
+        constructor:common,
+        printInfo:function () {
+            console.log("我是爷爷的info");
+        }
+    };
+    function common() {
+        this.printInfo = function () {
+            console.log("我是父亲的info");
+        }
+    }
+    common.prototype = p;
+    var commonParent = new common();
+    function common1() {
+        this.printInfo = function () {
+            console.log("我是自身的info");
+        }
+    }
+    common1.prototype = commonParent;
+    commonParent.constructor = common1;
+    var commonChild = new common1();
+    commonChild.printInfo();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    通过new一个正则对象
+    var reg = new RegExp(/[1-9][0-9]{4,}/);
+
+//    直接定义
+    var reg1 = /[1-9][0-9]{4,}/;
+
+    var str = "a";
+    var reg2 = /[^abc]/;
+    var m = reg2.test(str);
+    console.log(m);
+</script>
+</body>
+</html>

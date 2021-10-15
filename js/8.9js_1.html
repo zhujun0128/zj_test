@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+//    var x = 10;
+//    function myFun() {
+//        if(x < 50)
+//        {
+//            document.getElementById("demo").innerHTML = "数值小于50";
+//        }
+//        else if(x < 100)
+//        {
+//            document.getElementById("demo").innerHTML = "数值小于50";
+//        }
+//        else
+//        {
+//            document.getElementById("demo").innerHtml = "数值大于或者等于100";
+//        }
+//    }
+//    myFun();
+    //if else 多层嵌套，若没有大括号括起来，则按照最近的else匹配
+
+//    var month = prompt("请输入一个月份：");
+//    function myFun1(month) {
+//        var month1 = Math.floor(month);
+//        if(month1 != month)
+//        {
+//            document.getElementById("demo").innerHTML = "请输入1-12内的整数";
+//        }
+//        else
+//        {
+//            if(month <= 5 && month >= 3)
+//            {
+//                document.getElementById("demo").innerHTML = month + "月份是春天";
+//            }
+//            else if(month <= 8 && month>= 6)
+//            {
+//                document.getElementById("demo").innerHTML = month + "月份是夏天";
+//            }
+//            else if(month <= 11 && month>= 9)
+//            {
+//                document.getElementById("demo").innerHTML = month + "月份秋天";
+//            }
+//            else if(month == 8 || month== 1 || month == 2)
+//            {
+//                document.getElementById("demo").innerHTML = month + "月份是冬天";
+//            }
+//            else
+//            {
+//                document.getElementById("demo").innerHTML = "请输入1-12内的整数";
+//            }
+//        }
+//    }
+//    myFun1(month);
+//    function convert(x) {
+//        switch (typeof x)
+//        {
+//            case "number":
+//                return x.toString(16);
+//            case "string":
+//                return "" + x + "";
+//            default:
+//                return String(x);
+//        }
+//    }
+//    var m = convert(16);
+//    console.log(m);
+//    var i = 1;
+//    var num = 1;
+//    while(i <= 6)
+//    {
+//        num *= i;
+//        i++;
+//    }
+//    console.log(num);
+//    for(var i = 0;i < 4;i++)
+//            {
+//                for(var j = 0;j < 4 - i - 1;j++)
+//                {
+//                    document.write("&nbsp;");
+//        }
+//        for(var k = 0;k < 2 * i +1;k++)
+//        {
+//            document.write("*");
+//        }
+//        document.write("<br>");
+//    }
+//    var sum = 0;
+//    for(var i = 1;i <= 100;i++)
+//    {
+//        if(i % 2 == 0)
+//        {
+//            sum += i;
+//        }
+//    }
+//    document.write(sum);
+//    var person = {fname:"John",Iname:"Doe",age:25};
+//    var txt = "";
+//    for(var x in person)
+//    {
+//        txt = txt +person[x];
+//    }
+//    document.write(txt);
+//    var person = {money:100,age:20,num:50};
+//    var num = 0;
+//    for(var key in person)
+//    {
+//        if(key != "age")
+//        {
+//            num += person[key];
+//        }
+//    }
+//    document.write(num);
+//    for(var i = 0;i <= 100;i++)
+//    {
+//        if(i % 3 == 0)
+//        {
+//            document.write(i + ",");
+//        }
+//    }
+//    document.write("<br>");
+//    var arr = [6,,10,,5,2];
+//    var sum = 0;
+//    for(var i = 0;i < arr.length;i++)
+//    {
+//        if(arr[i] != undefined)
+//        {
+//            sum += arr[i];
+//        }
+//    }
+//    document.write(sum);
+    var age = prompt("请输入你的年纪：");
+    if(age < 12 && age >= 0)
+    {
+        document.write(age + "岁是儿童");
+    }
+    else if(age < 18 && age >= 12)
+    {
+        document.write(age + "岁是少年");
+    }
+    else if(age < 25 && age >= 18)
+    {
+        document.write(age + "岁是青少年");
+    }
+    else if(age < 30 && age >= 25)
+    {
+        document.write(age + "岁是青年");
+    }
+    else if(age < 40 && age >= 30)
+    {
+        document.write(age + "岁是中年");
+    }
+</script>
+</body>
+</html>

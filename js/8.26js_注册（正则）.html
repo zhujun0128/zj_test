@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            background: url("8.26bg.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .box{
+            width: 450px;
+            height: 580px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 15px;
+            position: absolute;
+            top: 20%;
+            left: 65%;
+        }
+        input{
+            width: 240px;
+            height: 30px;
+            padding-left: 10px;
+        }
+        #tit{
+            font-family: 华文宋体;
+            font-size: 42px;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+        h4{
+            color: gray;
+            font-family: 华文楷体;
+            margin-left: 50px;
+            margin-bottom: 50px;
+        }
+        a{
+            text-decoration: none;
+        }
+        p{
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 50px;
+            margin-left: 50px;
+        }
+        span{
+            margin-left: 84px;
+            color: red;
+            margin-top: 50px;
+        }
+        button{
+            width: 120px;
+            height: 50px;
+            margin-left: 70px;
+            font-weight: bold;
+            background: url("8.26btn1.png") no-repeat;
+            background-size: 100% 100%;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <p id="tit">用户注册</p>
+            <h4>已有账号？<a href="https://www.baidu.com">登录</a></h4>
+            <p>用户名：<input type="text" placeholder="由6-12位大小写字母和数字组成" oninput="verification(0)" style="margin-left: 16px;"><span></span></p>
+            <p>手机号：<input type="text" placeholder="由11位数字组成" oninput="verification(1)" style="margin-left: 16px;"><span></span></p>
+            <p>密码：<input type="password" placeholder="由6-12位大小写字母和数字组成" oninput="verification(2)" style="margin-left: 32px;"><span></span></p>
+            <p>确认密码：<input type="password" placeholder="由6-12位大小写字母和数字组成" oninput="verification(3)"><span></span></p>
+            <button>提交</button>
+            <button>重置</button>
+        </div>
+    </div>
+    <script>
+        var inp = document.getElementsByTagName("input");
+        var tips = document.getElementsByTagName("span");
+        var btn = document.getElementsByTagName("button");
+        var reg = /^[A-Za-z0-9]{6,12}$/;
+        var reg1 = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+        var arr = [false,false,false,false];
+        btn[0].disabled = true;
+        btn[0].style.cursor = "default";
+        btn[0].onclick = function () {
+            alert("提交成功！");
+        };
+        btn[1].onclick = function () {
+            for(var i = 0;i < inp.length;i++)
+            {
+                inp[i].value = "";
+                tips[i].innerHTML = "";
+            }
+            btn[0].style.cursor = "default";
+        };
+        function outStr(num) {
+            switch (num)
+            {
+                case 0:
+                    return "用户名不合法";
+                case 1:
+                    return "手机号不合法";
+                case 2:
+                    return "密码不合法";
+                case 3:
+                    return "确认密码不合法";
+            }
+        }
+        function verification(num) {
+            if(num == 1)
+            {
+                if(inp[num].value.match(reg1))
+                {
+                    arr[num] = true;
+                    tips[num].innerHTML = "";
+                }
+                else
+                {
+                    arr[num] = false;
+                    tips[num].innerHTML = outStr(num);
+                }
+            }
+            else if(num == 3)
+            {
+                if(inp[2].value == inp[3].value)
+                {
+                    if(inp[num].value.match(reg))
+                    {
+                        arr[num] = true;
+                        tips[num].innerHTML = "";
+                    }
+                    else
+                    {
+                        arr[num] = false;
+                        tips[num].innerHTML = outStr(num);
+                    }
+                }
+                else
+                {
+                    arr[num] = false;
+                    tips[num].innerHTML = "确认密码与密码不相等";
+                }
+            }
+            else
+            {
+                if(inp[num].value.match(reg))
+                {
+                    arr[num] = true;
+                    tips[num].innerHTML = "";
+                }
+                else
+                {
+                    arr[num] = false;
+                    tips[num].innerHTML = outStr(num);
+                }
+            }
+            for(var i = 0;i < arr.length;i++)
+            {
+                if(!arr[i])
+                {
+                    btn[0].disabled = true;
+                    btn[0].style.cursor = "default";
+                    return ;
+                }
+            }
+            btn[0].disabled = false;
+            btn[0].style.cursor = "pointer";
+            return ;
+        }
+    </script>
+</body>
+</html>

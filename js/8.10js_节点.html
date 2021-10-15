@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div id="bj" name="beijing">北京</div>-->
+<p class="intro">Hello World!</p>
+<p>DOM 很有用！</p>
+<p class="intro">本例演示<b>getElementsByTagName</b>方法</p>
+<script>
+//    //元素节点的获取
+//    var eleNode = document.getElementById("bj");
+//    //通过nodeName获取元素节点的节点名称，与标签名相同
+//    console.log(eleNode.nodeName);//div
+//    //元素的nodeValue是undefined或null
+//    console.log(eleNode.nodeValue);
+//    //元素的nodeType是1
+//    console.log(eleNode.nodeType);//1
+//
+//    //获取属性节点
+//    var attrNode = eleNode.getAttributeNode("name");
+//    //属性节点的nodeName与属性名相同
+//    console.log(attrNode.nodeName);//name
+//    //属性节点的nodeValue是属性值
+//    console.log(attrNode.nodeValue);//beijing
+//    //属性节点的nodeType是2
+//    console.log(attrNode.nodeType);//2
+//
+//    //文本节点
+//    var textNode = eleNode.firstChild;
+//    //只要是文本节点的nodeName始终是#text
+//    console.log(textNode.nodeName);//#text
+//    //文本的nodeValue是文本本身
+//    console.log(textNode.nodeValue);//北京
+//    //文本的nodeType是3
+//    console.log(textNode.nodeType);//3
+
+    //getElementsByTagName获取的是一个集合
+//    var p = document.getElementsByTagName("p");
+//    for(var i = 0;i < p.length;i++)
+//    {
+//        p[i].style.backgroundColor = "red";
+//    }
+//    console.log(p);
+
+    var intro = document.getElementsByClassName("intro");
+    intro[0].style.backgroundColor = "blue";
+    intro[1].style.backgroundColor = "green";
+</script>
+</body>
+</html>

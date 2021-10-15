@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrapper{
+            position: relative;
+            width: 1000px;
+            height: 800px;
+            border: 1px solid;
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            background-color: green;
+            position: absolute;
+        }
+    </style>
+</head>
+<body onload="onLoad();">
+    <div id="wrapper"></div>
+    <script>
+        var gGame=null;//Game的实例对象
+        var wrapper = document.getElementById("wrapper");
+        /*入口函数*/
+        function  onLoad() {
+            gGame = new Game();
+            gGame.update();
+        }
+        //主场景
+        function Game() {
+            var _this = this;//保存当前环境变量
+            this.ball =[];
+            for (var i=0;i<4;i++){
+                _this.ball.push(new Ball(i));
+            }
+            _this.ball.forEach(function (item,index) {
+                item.createBall();
+            });
+            this.update = function () {
+                _this.ball.forEach(function (t) {
+                    t.isBallCollision();
+                    t.updatePos();
+                });
+                window.requestAnimationFrame(_this.update);
+            }
+        }
+        /*小球的构造函数*/
+        function Ball(id) {
+            var _this = this;
+            var maxNum = 600;
+            this.x = Math.floor(Math.random() * maxNum);
+            this.y = Math.floor(Math.random() * maxNum);
+            this.angle = Math.floor(Math.random() * 360);
+            this.speed = 3;
+            this.id = id;
+            this.div = null;
+            this.createBall = function () {
+                _this.div = document.createElement('div');
+                _this.div.className = 'ball';
+                var R = Math.floor(Math.random() * 256);
+                var G = Math.floor(Math.random() * 256);
+                var B = Math.floor(Math.random() * 256);
+                _this.div.style.backgroundColor = 'rgb(' + R + ',' + G + ',' + B + ')';
+                _this.div.style.left = _this.x + 'px';
+                _this.div.style.top = _this.y + 'px';
+                wrapper.appendChild(_this.div);
+            };
+            this.angleToGradian = function (angle) {
+                return Math.PI / 180 * angle;
+            };
+            this.updatePos = function () {
+                var dt = 1;
+                _this.x += _this.speed * dt * Math.cos(_this.angleToGradian(_this.angle));
+                _this.y += _this.speed * dt * Math.sin(_this.angleToGradian(_this.angle));
+                _this.div.style.left = _this.x + 'px';
+                _this.div.style.top = _this.y + 'px';
+            };
+            this.isBallCollision = function () {
+                /*碰到墙壁反弹*/
+                if(_this.x <= 0 || _this.x >= wrapper.offsetWidth - _this.div.offsetWidth ||
+                    _this.y <= 0 || _this.y >= wrapper.offsetHeight - _this.div.offsetHeight)
+                {
+                    _this.angle -= 180;
+                }
+                /*小球碰撞反弹*/
+                gGame.ball.forEach(function (t) {
+                    if(t.id != _this.id)
+                    {
+                        if(Math.abs(t.x - _this.x) <= _this.div.offsetWidth &&
+                            Math.abs(t.y - _this.y) <= _this.div.offsetHeight)
+                        {
+                            _this.angle -= 180;
+                            t.angle -= 180;
+                            _this.x += _this.speed * 5 * Math.cos(_this.angleToGradian(_this.angle));
+                            _this.y += _this.speed * 5 * Math.sin(_this.angleToGradian(_this.angle));
+                            _this.div.style.left = _this.x + 'px';
+                            _this.div.style.top = _this.y + 'px';
+                            t.x += t.speed * 5 * Math.cos(t.angleToGradian(t.angle));
+                            t.y += t.speed * 5 * Math.sin(t.angleToGradian(t.angle));
+                            t.div.style.left = t.x + 'px';
+                            t.div.style.top = t.y + 'px';
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
