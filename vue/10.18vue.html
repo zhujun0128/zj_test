@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myvue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="awseom">Vue is awseom!</h1>
+        <h1 v-else>On no</h1>
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph1</p>
+            <p>Paragraph2</p>
+        </template>
+        <div v-if="Math.random() > 0.5">Now you see me</div>
+        <div v-else>Now you don't</div>
+        <div v-if="type === 'A'">A</div>
+        <div v-else-if="type === 'B'">B</div>
+        <div v-else-if="type === 'C'">C</div>
+        <div v-else>Not is A/B/C</div>
+        <hr>
+        <template v-if="loginType == 'username'">
+            <label for="username">Username:</label>
+            <input type="text" placeholder="Enter your username" id="username" key="username-input">
+        </template>
+        <template v-if="loginType == 'email'">
+            <label for="email">Email:</label>
+            <input type="text" placeholder="Enter your email" id="email" key="email-input">
+        </template>
+        <button @click="toggleLoginType">toggle login type</button>
+        <hr>
+        <h1 v-show="ok">hello</h1><!--display:none-->
+        <hr>
+        <ul>
+            <li v-for="(item,name,index) in object">
+                {{ index }}. {{ name }}: {{ item }}
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in todolist">
+                {{item}}
+                <button :disabled="item.show" @click="toggleStatus(item)">点击toggle我的状态</button>
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <button :disabled="object.show" @click="toggleObject()">点击toggle我的状态</button>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in tables">{{item}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="n in evenNumbers">{{n}}</li>
+        </ul>
+        <hr>
+        <ul v-for="set in sets">
+            <li v-for="n in even(set)">{{n}}</li>
+        </ul>
+        <hr>
+        <div>
+            <span v-for="n in 10">{{n}}</span>
+        </div>
+        <hr>
+        <ul>
+            <template v-for="item in todolist">
+                <li>{{item.name}}</li>
+                <li>{{item.show}}</li>
+            </template>
+        </ul>
+        <hr>
+        <div id="todo-list-example">
+            <form @submit.prevent="addNewTodo">
+                <label for="new-todo">Add a todo</label>
+                <input type="text" id="new-todo" placeholder="E.g. Feed the cat" v-model="newTodoText">
+                <button>Add</button>
+            </form>
+            <ul>
+                <li is="todo-item" v-for="(todo,index) in todos" :key="todo.id" :title="todo.title" @remove="delTodosItem(index)"></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                awseom:false,
+                ok:false,
+                type:"D",
+                loginType:"username",
+                object: {
+                    title: 'How to do lists in Vue',
+                    author: 'Jane Doe',
+                    publishedAt: '2016-04-10'
+                },
+                todolist:[
+                    {name:"php"},
+                    {name:"vue"},
+                    {name:"js"}
+                ],
+                tables:[5,2,4,8,1],
+                sets:[[1,2,3,4,5],[6,7,8,9,10]],
+                newTodoText:"",
+                todos:[
+                    {id:1,title:"Do this dishes"},
+                    {id:2,title:"Take out this trash"},
+                    {id:3,title:"Mow this lawn"}
+                ],
+                nextTodoId:4
+            },
+            methods:{
+                toggleLoginType(){
+                    if(this.loginType == "username"){
+                        this.loginType = "email";
+                    }else if(this.loginType == "email"){
+                        this.loginType = "username";
+                    }
+                },
+                toggleStatus(item){
+                    item.show = !item.show;
+                },
+                toggleObject(){
+                    this.object.show = !this.object.show;
+                },
+                even(set){
+                    return set.filter((val)=>{
+                        return val % 2 == 0;
+                    })
+                },
+                addNewTodo(){
+                    this.todos.push({id:this.nextTodoId++,title:this.newTodoText});
+                    this.newTodoText = "";
+                },
+                delTodosItem(index){
+                    this.todos.splice(index,1);
+                }
+            },
+            components:{
+                "todo-item":{
+                    template:`<li>{{title}}<button @click="remove">Remove</button></li>`,
+                    props:["title"],
+                    methods:{
+                        remove(){
+                            /*父子组件之间的通信*/
+                            /*子组件通关emit去发送一个事件，父组件监听这个事件，并触发对应的函数*/
+                            this.$emit("remove");
+                        }
+                    }
+                }
+            },
+            computed:{
+                evenNumbers(){
+                    return this.tables.filter((val)=>{
+                        return val % 2 == 0;
+                    })
+                }
+            },
+            created(){
+                var _this = this;
+                this.todolist.forEach(function (item) {
+                    _this.$set(item,"show",false);
+                });
+                this.$set(this.object,"show",false);//可以动态添加一个响应式的数据
+            }
+        });
+        /*第一个参数：那个数组去添加响应式数据；第二个参数：数组下标；第三个参数：变化的值*/
+        app.$set(app.tables,2,9);
+    </script>
+</body>
+</html>

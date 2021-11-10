@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myvue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li @click="jump(0)">文章列表1</li>
+            <li @click="jump(1)">文章列表2</li>
+            <li @click="jump(2)">文章列表3</li>
+        </ul>
+        <router-view></router-view>
+    </div>
+    <script>
+        const blog = {
+            template: "<div>博文{{$route.params.id}}</div>"
+        };
+        const routes = [
+            {
+                path:"/blog/:id",
+                name:"blog",
+                component:blog
+            }
+        ];
+        const  router = new VueRouter({
+            routes
+        });
+        var app = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            router,
+            methods:{
+                jump(type){
+//                    this.$router.push({path:`/blog/${type}`});
+                    this.$router.push({name:"blog",params:{id:type}});
+//                    this.$router.push({path:`/blog/${type}`,query:{plan:"privent"}});
+                }
+            }
+        });
+    </script>
+</body>
+</html>

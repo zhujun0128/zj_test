@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myvue.js"></script>
+    <style>
+        #outer{
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+        }
+        #middle{
+            width: 200px;
+            height: 200px;
+            background-color: #0099cc;
+        }
+        #inner{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+        .scrolls{
+            width: 100px;
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<!--
+.stop 阻止冒泡行为，不让当前元素事件继续往外触发。
+.prevent 阻止事件本身行为，如阻止form表单提交刷新，超链接点击跳转
+.capture 改变js默认的事件机制，默认的是冒泡，capture功能是将冒泡行为改为捕获
+.once 是将事件设置为只执行一次，click.prevent.once代表只阻止事件的默认行为一次，当第二次触发的时候，事件本身的行为会执行
+.self 只响应当前元素自身，不会响应经过冒泡触发的事件，并不会阻止冒泡继续向外触发
+click.prevent.self 阻止所有的点击，比如冒泡触发了a链接跳转，也不会使a链接进行跳转
+click.self.prevent 只会阻止对元素自身的点击，只有自己点击了自己操阻止a链接的跳转行为，冒泡他会触发a的跳转行为
+-->
+    <div id="app">
+        <button @click="warn('Form cannot be submited yet.',$event)">Click me</button>
+        <hr>
+        <div id="outer" @click.stop="alertInfo('outer')">
+            outer
+            <div id="middle" @click.stop="alertInfo('middle')">
+                middle
+                <div id="inner" @click.stop="alertInfo('inner')">inner</div>
+            </div>
+        </div>
+        <hr>
+        <a href="https://www.baidu.com" @click.prevent.once="alertInfo('阻止a链接')">prevent点击</a>
+        <hr>
+        <div class="scrolls" @scroll.passive="alertInfo('OnScroll')">
+            text text text text,text text text text,text text text text,
+            text text text text,text text text text,text text text text,
+            text text text text,text text text text,text text text text,
+            text text text text,text text text text,text text text text,
+            text text text text,text text text text,text text text text,
+        </div>
+        <hr>
+        <input type="text" @keyup.enter="alertInfo('enter')">
+        <input type="text" @keyup.page-down="alertInfo('pageDown')">
+        <hr>
+        <div @click.ctrl="alertInfo('ctrl')">点击</div><!--按住ctrl点击触发-->
+        <div @mousedown.right="alertInfo('mouseright')">鼠标右击</div>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                warn(message,event){
+                    console.log(message);
+                    console.log(event.target);
+                    event.target.style.backgroundColor = "green";
+                },
+                alertInfo(message){
+                    console.log(message);;
+                }
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

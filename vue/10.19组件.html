@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myvue.js"></script>
+    <style>
+        .demo-alert-box{
+            width: 900px;
+            height: 50px;
+            line-height: 50px;
+            padding: 4px;
+            background-color: salmon;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button-count></button-count>
+        <button-count></button-count>
+        <button-count></button-count>
+        <!--<hr>
+        <blog-post title="My journey with vue"></blog-post>
+        <blog-post title="Blogging with vue"></blog-post>
+        <blog-post title="Why vue is so fun"></blog-post>-->
+        <hr>
+        <div>
+            <div :style="{fontSize:postFontSize + 'em'}">
+                <blog-post v-for="post in posts" :key="post.id" :post="post" @enlarge-text="enlargeFontSize"></blog-post>
+            </div>
+        </div>
+        <hr>
+        <input type="text" v-model="searchText"><!--语法糖-->
+        <!--效果与下方的代码一致-->
+        <input type="text" :value="searchText" @input="searchText = $event.target.value">
+        <hr>
+        <!--在组件上使用v-model-->
+        <h2>在组件上使用v-model</h2>
+        <custom-input :value="searchText1" @input="searchText1 = $event"></custom-input>
+        <custom-input v-model="searchText1"></custom-input>
+        <hr>
+        <h2>插槽</h2>
+        <alert-box>Something bad happened</alert-box>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                posts:[
+                    {id:1,title:"My journey with vue",comments:"good",time:"2021/10/19",content:"<p>so funny</p>"},
+                    {id:2,title:"Blogging with vue",comments:"bad",time:"2021/10/19",content:"<b>so funny</b>"},
+                    {id:3,title:"Why vue is so fun",comments:"well",time:"2021/10/19",content:"<i>so funny</i>"},
+                ],
+                postFontSize:1,
+                searchText:"",
+                searchText1:""
+            },
+            methods:{
+                enlargeFontSize(){
+                    this.postFontSize += 0.1;
+                }
+            },
+            components:{
+                "button-count":{
+                    template:`<button @click="count++">You clicked me {{count}} times.</button>`,
+                    data(){
+                        return {
+                            count:0
+                        }
+                    }
+                },
+                /*"blog-post":{
+                    template:`<h3>{{title}}</h3>`,
+                    props:["title"]
+                },*/
+                "blog-post":{
+                    template:`<div><h3>{{post.title}}</h3><button @click="enlarge">Enlarge text</button><div v-html='post.content'></div></div>`,
+                    props:["post"],
+                    methods:{
+                        enlarge(){
+                            this.$emit("enlarge-text");
+                        }
+                    }
+                },
+                "custom-input":{
+                    template:`<input type='text' :value="value" @input="$emit('input',$event.target.value)">`,
+                    props:["value"]
+                },
+                "alert-box":{
+                    template:`<div class="demo-alert-box"><strong>Error!</strong><slot></slot></div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
